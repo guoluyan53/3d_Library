@@ -1,5 +1,7 @@
 # 智慧图书馆可视化
 
+README
+
 ## Project setup
 ```
 npm install

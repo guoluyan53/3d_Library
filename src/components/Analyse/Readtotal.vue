@@ -8,7 +8,7 @@
 </template>
 
 <script>
-// import {xdata,readdata} from '/src/assets/jstest/Analyse/readtotal.js '
+// import {xdata,readdata} from '  '
 export default {
 	data() {
 		return {
@@ -22,14 +22,21 @@ export default {
 		this.getData();
 		this.updateChart();
 	},
+    destroyed() {
+		window.removeEventListener('resize', () => {
+				if (this.chartInstance) {
+					this.chartInstance.resize();
+				}
+			});
+	},
 	methods: {
 		initChart() {
-			this.chartInstance = this.$echarts.init(this.$refs.total_ref, 'chalk'); //将图表实例通过ref进行赋值
+			this.chartInstance = this.$echarts.init(this.$refs.total_ref, 'dark'); //将图表实例通过ref进行赋值
 			const initOption = {
 				color: ['#06d3a0', '#0066ff'],
-				backgroundColor: '',
+				backgroundColor: '#0d1424',
 				title: {
-					text: '不同月份异常商品总数',
+					text: '今日学院阅读情况',
 					padding: [20, 20, 100, 100]
 				},
 				tooltip: {
@@ -110,7 +117,7 @@ export default {
 	height: 100%;
 }
 .chart1 {
-	width: 96%;
+	width: 100%;
 	height: 100%;
 }
 </style>

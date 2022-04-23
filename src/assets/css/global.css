@@ -1,0 +1,11 @@
+html,body,#app{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    font-size: calc(0.58vw + 8px);
+}
+canvas{
+    border-radius: 20px;
+}

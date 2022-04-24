@@ -6,6 +6,6 @@ html,body,#app{
     overflow: hidden;
     font-size: calc(0.58vw + 8px);
 }
-canvas{
+/* canvas{
     border-radius: 20px;
-}
+} */

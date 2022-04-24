@@ -6,5 +6,5 @@ const readdata=[
 ]
 export {
     xdata,
-    readata
+    readdata
 };

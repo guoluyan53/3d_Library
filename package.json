@@ -11,14 +11,17 @@
     "axios": "^0.26.1",
     "core-js": "^3.6.5",
     "echarts": "^5.3.2",
+    "swiper": "^8.1.4",
     "three": "^0.139.2",
     "three-js-csg": "^72.0.0",
     "three-orbit-controls": "^82.1.0",
     "three-stats": "^1.0.1",
     "threebsp": "^1.0.4",
     "vue": "^2.6.11",
+    "vue-awesome-swiper": "^2.6.7",
     "vue-axios": "^3.4.1",
     "vue-router": "^3.2.0",
+    "vue-seamless-scroll": "^1.1.23",
     "vuex": "^3.4.0"
   },
   "devDependencies": {

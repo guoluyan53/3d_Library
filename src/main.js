@@ -5,14 +5,14 @@ import store from './store'
 import axios from 'axios'
 import './assets/css/global.css'
 import VueAxios from 'vue-axios'
-<<<<<<< HEAD
-import * as echarts from 'echarts';
-
-
-=======
 import * as echarts from "echarts"
->>>>>>> 6538141cd5cde7e536c11530fa5e7afc307e19b4
+import scroll from 'vue-seamless-scroll'
+import VueAwesomeSwiper from 'vue-awesome-swiper'
+import 'swiper/swiper-bundle.css'
+
+Vue.use(scroll)
 Vue.use(VueAxios, axios)
+Vue.use(VueAwesomeSwiper)
 
 Vue.prototype.$echarts = echarts
 Vue.config.productionTip = false

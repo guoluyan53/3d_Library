@@ -1,10 +1,10 @@
 <!--  -->
 <template>
-    <div class="container1">
-        <!-- //通过ref属性进行图表盒子的获取this.$refs.名字 -->
-        <div class="chart1" ref="total_ref">
-        </div>
-    </div>
+	<div class="container1">
+		<!-- //通过ref属性进行图表盒子的获取this.$refs.名字 -->
+		<div class="chart1" ref="total_ref">
+		</div>
+	</div>
 </template>
 
 <script>
@@ -22,16 +22,16 @@ export default {
 		this.getData();
 		this.updateChart();
 	},
-    destroyed() {
+	destroyed() {
 		window.removeEventListener('resize', () => {
-				if (this.chartInstance) {
-					this.chartInstance.resize();
-				}
-			});
+			if (this.chartInstance) {
+				this.chartInstance.resize();
+			}
+		});
 	},
 	methods: {
 		initChart() {
-			this.chartInstance = this.$echarts.init(this.$refs.total_ref, 'dark'); //将图表实例通过ref进行赋值
+			this.chartInstance = this.$echarts.init(this.$refs.total_ref, 'chalk'); //将图表实例通过ref进行赋值
 			const initOption = {
 				color: ['#06d3a0', '#0066ff'],
 				backgroundColor: '#0d1424',
@@ -50,7 +50,7 @@ export default {
 					textstyle: {
 						fontSize: 18
 					}
-				}, 
+				},
 				//直角坐标轴的位置
 				grid: {
 					top: '20%',
@@ -71,14 +71,14 @@ export default {
 			const Option = {
 				xAxis: {
 					type: 'category',
-					data: ['计算机信息工程学院','体育学院','美术学院','商学院','文学院'],
+					data: ['计算机信息工程学院', '体育学院', '美术学院', '商学院', '文学院']
 				},
 				yAxis: {
-                    type: 'value'
+					type: 'value'
 				},
 				series: {
 					type: 'bar',
-					data: [100,200,600,350,426],
+					data: [100, 200, 600, 350, 426],
 					barWidth: 50,
 					label: {
 						show: true,
@@ -101,7 +101,7 @@ export default {
 					}
 				}
 			};
-            this.chartInstance.setOption(Option);
+			this.chartInstance.setOption(Option);
 			window.addEventListener('resize', () => {
 				if (this.chartInstance) {
 					this.chartInstance.resize();

@@ -172,7 +172,8 @@ export default {
       animate() {
           this.renderer.render(this.scene, this.camera);
           requestAnimationFrame(this.animate);
-          TWEEN.update()
+          TWEEN.update();
+          this.composer.render();
       },
       //创建封装地板函数
       createBox(width,height,depth,angle,meterial,x,y,z,name){
@@ -206,9 +207,11 @@ export default {
 
   },
   mounted(){
+      
       this.init();
       this.initmodel();
       this.animate();
+
   },
   destroyed(){
       this.scene = null;

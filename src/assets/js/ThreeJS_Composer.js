@@ -49,11 +49,18 @@ function Composer(_renderer,_scene,_camera,_groups){
             labelbox.style.display = "none";
             return;
         }
-        if(intersects[0].object.name == "地板1"|| intersects[0].object.name == "地板2" ||intersects[0].object.name == "地板3" ||intersects[0].object.name == "地板4" || intersects[0].object.name == "" || intersects[0].object.name == "空白块"){
+        if(intersects[0].object.name == "地板1"|| intersects[0].object.name == "地板2" ||intersects[0].object.name == "地板3" ||intersects[0].object.name == "地板4" || intersects[0].object.name == ""){
             var labelbox = document.getElementById("label");
             labelbox.style.display = 'none';
             selectObj.pop();
-        }else{
+            selectObj.push(intersects[0].object);
+            outlinePass.selectedObjects = selectObj;
+        }else if(intersects[0].object.name == "空白"){
+            var labelbox = document.getElementById("label");
+            labelbox.style.display = 'none';
+            selectObj.pop();
+        }
+        else{
             var labelbox = document.getElementById("label");
             labelbox.style.display =  "block";
             labelbox.style.left =  x+'px';
@@ -175,9 +182,13 @@ function getName(_renderer,_scene,camera){
         if(intersects.length==0){
             return;
         }
-        if(intersects[0].object.name == "地板1"|| intersects[0].object.name == "地板2" ||intersects[0].object.name == "地板3" ||intersects[0].object.name == "地板4" || intersects[0].object.name == "" || intersects[0].object.name == "空白块"){
+        // if(intersects[0].object.name == "地板1"|| intersects[0].object.name == "地板2" ||intersects[0].object.name == "地板3" ||intersects[0].object.name == "地板4" || intersects[0].object.name == "" || intersects[0].object.name == "空白块"){
+        //     return;
+        // }
+        if(intersects[0].object.name == "空白块"){
             return;
-        }else{
+        }
+        else{
             console.log(intersects[0].object.name)
             return intersects[0].object.name
         }

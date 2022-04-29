@@ -11,10 +11,22 @@ Vue.use(VueRouter)
     component: Index
   },
   {
-    // 测试可见
+    // 楼层分析
     path: '/floor',
     name: 'Floor',
-    component: () => import('../components/Floor/floorobj.vue')
+    component: () => import('../views/Floor.vue')
+  },
+  {
+    // 导航栏
+    path: '/nav',
+    name: 'Nav',
+    component: () => import('../components/public/nav.vue')
+  },
+  {
+    // 图书分析
+    path: '/book',
+    name: 'Book',
+    component: () => import('../components/Book/Dotted.vue')
   },
   {
     path: '/readTotal',

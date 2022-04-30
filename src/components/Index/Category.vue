@@ -1,9 +1,15 @@
 <!-- 分类饼图 -->
 <template>
-  <div class="container">
-    <div class="chart" ref="cate_ref"></div>
-  </div>
+	<div class="container">
+		<div class="title">
+			<p class="title-p">分类借阅比率</p>
+		</div>
+		<div class="chart-box">
+			<div class="chart" ref="cate_ref"></div>
+		</div>
+	</div>
 </template>
+
 
 <script>
 import { catedata } from '../../assets/data/category.js';
@@ -29,31 +35,29 @@ export default {
 	},
 	methods: {
 		initChart() {
-			this.chartInstance = this.$echarts.init(this.$refs.cate_ref, 'dark'); //将图表实例通过ref进行赋值
-      this.alldata=catedata;
+			this.chartInstance = this.$echarts.init(this.$refs.cate_ref, 'chalk'); //将图表实例通过ref进行赋值
+			this.alldata = catedata;
 			const initOption = {
-        color: ['#005de7',
-            '#fcd436',
-            '#ff333e',
-            "#58d9f9",
-            "#05c091",
-            '#3ad2f8',
-            '#33ff87',
-            "#38fac9",
-            "#ff7f33",
-            "#914ee4",
-            "#7522dd"],
-          backgroundColor: '#020e24',
-					title: {
-					text: '分类借阅比率',
-					padding: [15,20,100,160],
-				},
-          	series: [
+				color: [
+					'#005de7',
+					'#fcd436',
+					'#ff333e',
+					'#58d9f9',
+					'#05c091',
+					'#3ad2f8',
+					'#33ff87',
+					'#38fac9',
+					'#ff7f33',
+					'#914ee4',
+					'#7522dd'
+				],
+				backgroundColor: '',
+
+				series: [
 					{
 						type: 'pie',
-						radius: '65%',
+						radius: ['50%', '70%'],
 						center: ['50%', '50%'],
-						selectedMode: 'single',
 						emphasis: {
 							itemStyle: {
 								shadowBlur: 10,
@@ -81,30 +85,28 @@ export default {
 						},
 						label: {
 							show: true,
-							// formatter: function(a) {
-							// 	var str = ' ';
-							// 	return str.concat(a.name + ' ' + {d}% );
-							// }
-               formatter: "a.name<br/>: {d}%"
+							formatter: function(a) {
+								var str = ' ';
+								return str.concat(a.name + ' ');
+							}
 						}
 					}
 				]
-      };
+			};
 			this.chartInstance.setOption(initOption);
 		},
-    returndata(){
-        this.alldata=catedata;
-    },
-    updateChart(){
-      const Option = {
-
-      }
-      this.chartInstance.setOption(Option);
+		returndata() {
+			this.alldata = catedata;
+		},
+		updateChart() {
+			const Option = {};
+			this.chartInstance.setOption(Option);
 			window.addEventListener('resize', () => {
 				if (this.chartInstance) {
-				this.chartInstance.resize();}
+					this.chartInstance.resize();
+				}
 			});
-    }
+		}
 	}
 };
 </script>
@@ -113,8 +115,29 @@ export default {
 	width: 100%;
 	height: 100%;
 }
+.chart-box {
+	width: 100%;
+	height: 100%;
+	background-image: url('../../assets/image/roll_back1.png');
+	background-repeat: no-repeat;
+	background-size: (100%, 100%);
+}
 .chart {
 	width: 100%;
 	height: 100%;
+	transform: scale(0.9);
+}
+.title {
+	width: 100%;
+	height: 1.5rem;
+	background-image: url('../../assets/image/rolltitle.png');
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	color: white;
+}
+.title-p {
+	transform: translate(-4rem, 0.1rem);
+	letter-spacing: 1.6px;
+	font-size: 0.8rem;
 }
 </style>

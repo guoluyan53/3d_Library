@@ -1,25 +1,26 @@
-<!--  -->
+
+<!-- // 折线堆叠图，横轴是年份，纵轴是阅读量，颜色代表不同的读者身份 -->
 <template>
-	<div class="container1">
-		<!-- //通过ref属性进行图表盒子的获取this.$refs.名字 -->
-		<div class="chart1" ref="total_ref">
+	<div class="container">
+		<div class="chart" ref="reader_ref">
 		</div>
 	</div>
 </template>
 
 <script>
-// import {xdata,readdata} from '  '
+import { readerTotal } from '../../assets/data/readertotal.js';
 export default {
 	data() {
 		return {
-			//图表实例
 			chartInstance: null,
-			allData: null //从服务器中获取的所有数据
+			alldata: [],
+			seriesArr:null,
+			year:[],
 		};
 	},
 	mounted() {
 		this.initChart();
-		this.getData();
+		this.returndata();
 		this.updateChart();
 	},
 	destroyed() {
@@ -31,75 +32,212 @@ export default {
 	},
 	methods: {
 		initChart() {
-			this.chartInstance = this.$echarts.init(this.$refs.total_ref, 'chalk'); //将图表实例通过ref进行赋值
+			this.chartInstance = this.$echarts.init(this.$refs.reader_ref, 'chalk');
 			const initOption = {
-				color: ['#06d3a0', '#0066ff'],
-				backgroundColor: '#0d1424',
+				backgroundColor: '#0b172e',
 				title: {
-					text: '今日学院阅读情况',
-					padding: [20, 20, 100, 100]
+					text: '读者年度阅读统计',
+					padding: [4, 20, 150,],
+					textStyle: {
+						fontSize: 18, //字体大小
+						color: '#1fd6fc' //字体颜色
+					}
 				},
 				tooltip: {
 					trigger: 'axis',
-					axisPointer: {
-						type: 'cross',
-						label: {
-							backgroundColor: '#999'
-						}
-					},
 					textstyle: {
 						fontSize: 18
 					}
 				},
-				//直角坐标轴的位置
+					legend: {
+					left: 300,
+					top: '8%',
+					icon: 'roundRect',
+					data: ['研究生', '教职工','本科生','教授','其他人员'],
+					textStyle: {
+						fontSize: 10, //字体大小
+						color: '#ffffff' //字体颜色
+					}
+				},
 				grid: {
-					top: '20%',
+					// top: '12%',
 					left: '12%',
 					right: '6%',
-					bottom: '18%',
+					bottom: '25%',
 					containLable: true //距离包含坐标轴上的文字
 				}
+
 			};
 			this.chartInstance.setOption(initOption);
 		},
 
-		//获取服务器数据的方法
-		getData() {},
+		returndata() {
+			//axios
+			this.alldata=readerTotal;
+			
 
-		//处理数据的方法
+		},
 		updateChart() {
+			this.year = ['2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021'];
 			const Option = {
 				xAxis: {
 					type: 'category',
-					data: ['计算机信息工程学院', '体育学院', '美术学院', '商学院', '文学院']
+					data: this.year,
+					boundaryGap: false,
+					axisLine: {
+						lineStyle: {
+							color: 'white'
+						}
+					}
 				},
 				yAxis: {
-					type: 'value'
-				},
-				series: {
-					type: 'bar',
-					data: [100, 200, 600, 350, 426],
-					barWidth: 50,
-					label: {
-						show: true,
-						position: 'right',
-						textStyle: {
+					type: 'value',
+					splitLine: false,
+					axisLine: {
+						lineStyle: {
 							color: 'white'
 						}
 					},
-					itemStyle: {
-						color: new this.$echarts.graphic.LinearGradient(0, 0, 1, 0, [
-							{
-								offset: 0,
-								color: '#5052EE'
-							},
-							{
-								offset: 1,
-								color: '#AB6EE5'
-							}
-						])
+					axisLabel: {
+						textStyle: {
+							color: 'white' 
+						}
 					}
-				}
+				},
+				series: [
+					//一个数组，每个表示一根折线
+					{
+						name: '研究生',
+						type: 'line',
+						data: this.alldata[0].data,
+						stack: 'total', //堆叠图
+						lineStyle: {
+							color: '#005de7' //折线的颜色
+						},
+						label: {
+							show: true,
+							position: 'top'
+						},
+						areaStyle: {
+							opacity: 0.8,
+							color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+								{
+									offset: 0,
+									color: 'rgba(0, 93, 231, 1)'
+								},
+								{
+									offset: 1,
+									color: 'rgba(0, 93, 231, 0)'
+								}
+							])
+						}
+					},
+					{
+						name: '教职工',
+						type: 'line',
+						data: this.alldata[1].data,
+						stack: 'total', //堆叠图
+						lineStyle: {
+							color: '#fcd436' //折线的颜色
+						},
+						label: {
+							show: true,
+							position: 'top'
+						},
+						areaStyle: {
+							opacity: 0.8,
+							color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+								{
+									offset: 0,
+									color: 'rgba(252, 212, 54, 1)'
+								},
+								{
+									offset: 1,
+									color: 'rgba(252, 212, 54,0)'
+								}
+							])
+						}
+					},
+					{
+						name: '本科生',
+						type: 'line',
+						data: this.alldata[2].data,
+						stack: 'total', //堆叠图
+						lineStyle: {
+							color: '#ff333e' //折线的颜色
+						},
+						label: {
+							show: true,
+							position: 'top'
+						},
+						areaStyle: {
+							opacity: 0.8,
+							color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+								{
+									offset: 0,
+									color: 'rgba(255, 51, 62, 1)'
+								},
+								{
+									offset: 1,
+									color: 'rgba(255, 51, 62, 0)'
+								}
+							])
+						}
+					},
+					{
+						name: '教授',
+						type: 'line',
+						data: this.alldata[3].data,
+						stack: 'total', //堆叠图
+						lineStyle: {
+							color: '#58d9f9' //折线的颜色
+						},
+						label: {
+							show: true,
+							position: 'top'
+						},
+						areaStyle: {
+							opacity: 0.8,
+							color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+								{
+									offset: 0,
+									color: 'rgba(88, 217, 249, 1)'
+								},
+								{
+									offset: 1,
+									color: 'rgba(88, 217, 249, 0)'
+								}
+							])
+						}
+					},
+					{
+						name: '其他人员',
+						type: 'line',
+						data: this.alldata[4].data,
+						stack: 'total', //堆叠图
+						lineStyle: {
+							color: '#05c091' //折线的颜色
+						},
+						label: {
+							show: true,
+							position: 'top'
+						},
+						areaStyle: {
+							opacity: 0.8,
+							color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+								{
+									offset: 0,
+									color: 'rgba(5, 192, 145, 1)'
+								},
+								{
+									offset: 1,
+									color: 'rgba(5, 192, 145, 0)'
+								}
+							])
+						}
+					},
+				]
+
 			};
 			this.chartInstance.setOption(Option);
 			window.addEventListener('resize', () => {
@@ -112,11 +250,14 @@ export default {
 };
 </script>
 <style scoped>
-.container1 {
+.container {
 	width: 100%;
 	height: 100%;
+	/* background-image: url('../../assets/image/indexkuang.png');
+	background-repeat: no-repeat;
+	background-size: cover; */
 }
-.chart1 {
+.chart {
 	width: 100%;
 	height: 100%;
 }

@@ -17,7 +17,7 @@
 
 			<div class="total-count2">
 				<div class="return-book">
-					
+
 					<p>总还书量</p>
 					<p class="return-book-value">{{firstreturn}}</p>
 				</div>
@@ -74,7 +74,7 @@ export default {
 			//挂载
 			this.chartInstance = this.$echarts.init(this.$refs.borrow_ref, 'chalk');
 			const initOption = {
-				backgroundColor: '#031a40',
+				backgroundColor: '',
 				//提示框
 				tooltip: {
 					trigger: 'axis',
@@ -96,11 +96,12 @@ export default {
 				grid: {
 					left: '3%',
 					right: '4%',
-					bottom: '10%',
+					// bottom: '10%',
 					containLabel: true
 				},
 				xAxis: {
 					type: 'value',
+					splitLine: false,
 					boundaryGap: [0, 0.01],
 					axisLine: {
 						lineStyle: {
@@ -344,13 +345,15 @@ export default {
 <style scoped>
 .container {
 	width: 100%;
-	height: 100vh;
+	height: 100%;
 	display: grid;
 	grid-template-rows: 0.5fr 1fr 3.8fr;
-	/* background-image: url('../assets/image/back.png');
+	background-image: url('../../assets/image/indexkuang.png');
 	background-repeat: no-repeat;
-	background-size: cover; */
-	background-color: #0d1424;
+	background-size: contain;
+}
+.chart{
+	transform: scale(0.96)
 }
 li {
 	list-style: none;

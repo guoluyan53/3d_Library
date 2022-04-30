@@ -5,7 +5,8 @@ import store from './store'
 import axios from 'axios'
 import './assets/css/global.css'
 import VueAxios from 'vue-axios'
-import * as echarts from "echarts"
+// import * as echarts from "echarts"
+import '../public/static/lib/echarts.min'
 import scroll from 'vue-seamless-scroll'
 
 

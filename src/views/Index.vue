@@ -1,52 +1,64 @@
 <!-- 首页门户，放图书馆模型的那一页-->
 <template>
-  <div class="body-box">
-    <div class="top">
-      <p>图书馆数据展示平台</p>
-    </div>
+	<div class="body-box">
+		<div class="top">
+			<p>图书馆数据展示平台</p>
+		</div>
 
-    <!-- 首页下面分成三部分，网格布局 -->
-    <div class="body-container">
-      <div class="content-left">
+		<!-- 首页下面分成三部分，网格布局 -->
+		<div class="body-container">
+			<div class="content-left">
+				<Borrow></Borrow>
+				<Enter></Enter>
+			</div>
+			<div class="content-middle">
+				<div class="middleschool">
+					<div class="total">
+						<div class="total1">
+							<p>总藏书量</p>
+							<p>225164万册</p>
+						</div>
+						<div class="total2">
+							<p>累计借还量</p>
+							<p>225164万册</p>
+						</div>
+						<div class="total3">
+							<p>今日进馆人数</p>
+							<p>2254人</p>
+						</div>
+					</div>
 
-      </div>
-      <div class="content-middle">
-        <div class="school"></div>
-        <div class="total">
-          <div class="total1">
-            <p>总藏书量</p>
-            <p>225164万册</p>
-          </div>
-          <div class="total2">
-            <p>累计借还量</p>
-            <p>225164万册</p>
-          </div>
-          <div class="total3">
-            <p>今日进馆人数</p>
-            <p>2254人</p>
-          </div>
-
-        </div>
-        <div class="roll-top">
-          <Rolldata></Rolldata>
-        </div>
-      </div>
-      <div class="content-right">
-
-      </div>
-    </div>
-  </div>
+					<div class="school"></div>
+				</div>
+				<div class="book">
+					<Recommend></Recommend>
+				</div>
+			</div>
+			<div class="content-right">
+				<Category></Category>
+				<Rolldata></Rolldata>
+			</div>
+		</div>
+	</div>
 </template>
 
 <script>
 import Rolldata from '../components/Index/Rolldata.vue';
+import Borrow from '../components/Index/Borrow.vue';
+import Enter from '../components/Index/Enter.vue';
+import Recommend from '../components/Index/Recommend.vue';
+import Category from '../components/Index/Category.vue';
 export default {
 	name: 'Index',
 	data() {
 		return {};
 	},
 	components: {
-		Rolldata
+		Rolldata,
+		Borrow,
+		Enter,
+		Recommend,
+		Category
 	}
 };
 </script>
@@ -61,7 +73,7 @@ export default {
 .top {
 	background-image: url('../assets/image/head.png');
 	background-repeat: no-repeat;
-	background-size: contain;;
+	background-size: 100% 100%;
 	color: white;
 	text-align: center;
 	align-items: center;
@@ -78,16 +90,34 @@ export default {
 div[class^='content'] {
 	height: 100vh;
 }
+.content-left {
+	display: grid;
+	grid-template-rows: 50% 50%;
+}
 .content-middle {
 	display: grid;
-	grid-template-rows: 50% 10% 40%;
+	grid-template-rows: 60% 40%;
+}
+.content-right {
+	display: grid;
+	grid-template-rows: 48% 52%;
+}
+.middleschool {
+	display: grid;
+	grid-template-rows: 25% 75%;
+	padding-top: 1rem;
+	background-image: url('../assets/image/bodyback.png');
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
 }
 .school {
+	width: 100%;
+	height: 100%;
 	background-image: url('../assets/image/indexschool.png');
 	background-repeat: no-repeat;
 	background-size: contain;
 	z-index: 100;
-	transform: translateY(2.2rem) scale(1.46);
+	transform: scale(1.3);
 }
 .total {
 	color: white;
@@ -104,13 +134,8 @@ div[class^='content'] {
 	width: 7.2rem;
 	height: 100%;
 	text-align: center;
-	transform: translateY(-2.8rem);
 }
 .total p {
 	font-size: 0.5rem;
-}
-.roll-top {
-	width: 100%;
-	transform: translateY(-2.8rem);
 }
 </style>

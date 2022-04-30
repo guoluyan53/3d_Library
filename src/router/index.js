@@ -45,7 +45,22 @@ Vue.use(VueRouter)
     path: '/category',
     name: 'Category',
     component: () => import('../components/Index/Category.vue')
-  }
+  },
+  {
+    path: '/readtotal',
+    name: 'Readtotal',
+    component: () => import('../components/Analyse/Readtotal.vue')
+  },
+  {
+    path: '/radar',
+    name: 'Radarcategory',
+    component: () => import('../components/Analyse/Radarcategory.vue')
+  },
+  {
+    path: '/change',
+    name: 'Change',
+    component: () => import('../components/Analyse/Change.vue')
+  },
 ]
 
 const router = new VueRouter({

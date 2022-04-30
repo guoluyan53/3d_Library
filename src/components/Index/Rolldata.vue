@@ -1,6 +1,9 @@
 <!--首页滚榜实现-->
 <template>
 	<div class="container">
+		<div class="rolltitle">
+			<p class="rolltitle-p">热门借阅图书详情</p>
+		</div>
 		<div class="nav">
 			<ul>
 				<li>书籍名称</li>
@@ -32,7 +35,7 @@ export default {
 	},
 	data() {
 		return {
-			listData,
+			listData
 		};
 	},
 	mounted() {
@@ -55,7 +58,7 @@ export default {
 	},
 	methods: {
 		returndata() {
-			this.listData=listData
+			this.listData = listData;
 		}
 	}
 };
@@ -76,11 +79,14 @@ export default {
 }
 /* 滑动条的盒子 */
 .warp {
-	height: 12rem;
+	height: 15rem;
 	width: 100%;
 	overflow: hidden;
 	padding-left: 0;
 	padding-top: 0;
+	background-image: url('../../assets/image/roll_back.png');
+	background-repeat: no-repeat;
+	background-size: cover;
 }
 ul {
 	list-style: none;
@@ -97,7 +103,6 @@ ul {
 	margin-right: 6px;
 	width: 100%;
 	padding: 0 10px;
-	background-color: #031a40;
 }
 span {
 	display: inline-block;
@@ -108,20 +113,30 @@ span {
 	overflow: hidden; /*设置隐藏*/
 	text-overflow: ellipsis; /*设置隐藏部分为省略号*/
 	font-size: 0.8rem;
-	/* padding: 0 3px; */
 }
 /* 上面导航栏是ul为单位，如果上面导航栏和下面一一对齐是nav ul和item li对齐 使用grid */
 .nav ul {
 	list-style: none;
-	padding-left: 0.2rem;
-	padding-right: 0.2rem;
 	align-items: center;
-	justify-content: space-around;
 	color: #07dbff;
 	background-color: #0c3571;
 	height: 2rem;
 	width: 100%;
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+.rolltitle {
+	width: 100%;
+	height: 1.6rem;
+	background-image: url('../../assets/image/rolltitle.png');
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	color: white;
+	text-align: start;
+}
+.rolltitle-p{
+	transform: translate(0.8rem,-0.6rem);
+	letter-spacing: 1.6px;
+	font-size: 0.8rem
 }
 </style>

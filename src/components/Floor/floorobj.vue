@@ -1,6 +1,6 @@
 <!-- 楼层模型模块-->
 <template>
-  <div id="floorobj">
+  <div id="floorobj" style="width:200px; height200px">
     <div id="label"></div>
   </div>
 </template>
@@ -13,6 +13,10 @@ import TWEEN from '@tweenjs/tween.js';
 import { TetrahedronGeometry } from 'three';
 export default {
   name: 'Floorobj',
+  props:{
+    width:{type:Number},
+    height:{type:Number},
+  },
   data(){
       return {
           scene:null,  //场景
@@ -37,7 +41,7 @@ export default {
       },
       //初始化相机
       initCamera(){
-          this.camera = new THREE.PerspectiveCamera(45,window.innerWidth / window.innerHeight,0.1,10000);
+          this.camera = new THREE.PerspectiveCamera(45,this.width / this.height,0.1,10000);
           this.camera.position.set(0,800,1500);
           this.camera.lookAt(new THREE.Vector3(0,0,0));
           this.scene.add(this.camera);
@@ -56,7 +60,7 @@ export default {
       // 初始化渲染器
       initRenderer() {
           this.renderer = new THREE.WebGLRenderer({antialias: true});
-          this.renderer.setSize(window.innerWidth, window.innerHeight);
+          this.renderer.setSize(this.width,this.height);
         //   this.renderer.setClearColor(0x4682B4,1.0);
           this.container = document.getElementById("floorobj");
           this.container.appendChild(this.renderer.domElement);
@@ -81,7 +85,7 @@ export default {
           this.initRenderer();
           this.initOrbitControls();
           /* 监听事件,监听窗口变动 */
-        //   window.addEventListener('resize', this.onWindowResize, false);
+          window.addEventListener('resize', this.onWindowResize, false);
           this.getName = new getName(this.renderer,this.scene,this.camera);
       },
       //初始化模型函数合集
@@ -164,9 +168,9 @@ export default {
 
       /* 窗口变动触发 */
       onWindowResize() {
-        // this.camera.aspect = window.innerWidth / window.innerHeight;
-        // this.camera.updateProjectionMatrix();
-        this.renderer.setSize(window.innerWidth, window.innerHeight);
+        this.camera.aspect = this.width / this.height;
+        this.camera.updateProjectionMatrix();
+        this.renderer.setSize(this.width, this.height);
       },
       //注意要添加这个，不然场景出不来
       animate() {

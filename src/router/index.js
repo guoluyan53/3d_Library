@@ -17,16 +17,10 @@ Vue.use(VueRouter)
     component: () => import('../views/Floor.vue')
   },
   {
-    // 导航栏
-    path: '/nav',
-    name: 'Nav',
-    component: () => import('../components/public/nav.vue')
-  },
-  {
     // 图书分析
     path: '/book',
     name: 'Book',
-    component: () => import('../components/Book/Dotted.vue')
+    component: () => import('../views/Book.vue')
   },
   {
     path: '/readTotal',

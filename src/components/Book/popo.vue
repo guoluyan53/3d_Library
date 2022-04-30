@@ -1,4 +1,4 @@
-<!-- 图书分析 中间的泡泡图-->
+<!-- 图书分析 中间的泡泡图散点图-->
 <template>
   <div class="popo">
      <div class="contain" ref="popo"></div>
@@ -44,7 +44,7 @@ export default {
             console.log(resdata);
           })
           console.log(resdata.timeline);
-          this.popo = this.$echarts.init(this.$refs.popo,'dark');
+          this.popo = this.$echarts.init(this.$refs.popo,'chalk');
           const itemStyle = {
                 opacity: 0.8
           };
@@ -60,7 +60,9 @@ export default {
             { name: 'Country', index: 3, text: '家', unit: '' }
           ];
           const initOption = {
+              backgroundColor: '', //背景透明
               baseOption: {
+                backgroundColor: '', //背景透明
                 timeline: {
                     axisType: 'category',
                     orient: 'vertical',
@@ -90,11 +92,11 @@ export default {
                     left: '63%',
                     top: '55%',
                     textStyle: {
-                        fontSize: 100
+                        fontSize: 50  //年份字体的大小
                     }
                     },
                     {
-                    text: '各国人均寿命与GDP关系演变',
+                    text: '馆藏图书利用率关系演变',
                     left: 'center',
                     top: 10,
                     textStyle: {
@@ -129,13 +131,24 @@ export default {
                     nameGap: 25,
                     nameLocation: 'middle',
                     nameTextStyle: {
-                    fontSize: 18
+                    fontSize: 18,
+                    color:'#fff'
                     },
+                    axisLine:{
+		                lineStyle:{
+		                    color:'#fff',
+		                    width:1,//这里是为了突出显示加上的
+		                }
+		            },
                     splitLine: {
                     show: false
                     },
                     axisLabel: {
-                    formatter: '{value} $'
+                    formatter: '{value} $',
+                    textStyle: {
+                         color:  '#fff' , //坐标值得具体的颜色
+ 
+                     }
                     }
                 },
                 yAxis: {
@@ -143,24 +156,35 @@ export default {
                     name: '平均寿命',
                     max: 100,
                     nameTextStyle: {
-                    fontSize: 18
+                        fontSize: 18,
+                        color:'#fff'
                     },
                     splitLine: {
                     show: false
                     },
                     axisLabel: {
-                    formatter: '{value} 岁'
+                    formatter: '{value} 岁',
+                    textStyle: {
+                         color:  '#fff' , //坐标值得具体的颜色
+ 
                     }
+                    },
+                    axisLine:{
+		                lineStyle:{
+		                    color:'#fff',
+		                    width:1,//这里是为了突出显示加上的
+		                }
+		            },
                 },
                 visualMap: [
                     {
                     show: false,
                     dimension: 3,
-                    categories: resdata.counties,
+                    categories: resdata.counties, //数据
                     inRange: {
                         color: (function () {
                         // prettier-ignore
-                        var colors = ['#51689b', '#ce5c5c', '#fbc357', '#8fbf8f', '#659d84', '#fb8e6a', '#c77288', '#786090', '#91c4c5', '#6890ba'];
+                        var colors = ['#60eeff', '#0066fe', '#ff3844', '#38ff94', '#0066fe', '#ffe93b', '#05d39f', '#38fac9', '#1993db', '#6890ba'];
                         return colors.concat(colors);
                         })()
                     }
@@ -168,12 +192,13 @@ export default {
                 ],
                 series: [
                     {
-                    type: 'scatter',
-                    itemStyle: itemStyle,
-                    data: resdata.series[0],
-                    symbolSize: function (val) {
-                        return sizeFunction(val[2]);
-                    }
+                        type: 'scatter',
+                        itemStyle: itemStyle,
+                        data: resdata.series[0],
+                        symbolSize: function (val) {
+                            return sizeFunction(val[2]);
+                        },
+                        
                     }
                 ],
                 animationDurationUpdate: 1000,
@@ -204,13 +229,9 @@ export default {
 
         //更新图表
         updateChart(){
-            const Option = {
-
-            }
-            this.popo.setOption(Option);
             window.addEventListener('resize', () => {
 				if (this.popo) {
-				this.chartInstance.resize();}
+				this.popo.resize();}
 			});
         }
      

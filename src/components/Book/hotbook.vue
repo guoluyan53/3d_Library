@@ -1,7 +1,8 @@
 <!-- 图书分析 中间下面的环形饼图-->
 <template>
   <div class="hotbook">
-     <div class="contain" ref="hot"></div>
+     <div class="contain" ref="hot1"></div>
+     <div class="contain" ref="hot2"></div>
   </div>
 </template>
 
@@ -13,7 +14,8 @@ export default {
     data(){
         return{
             //图表实例
-            hotbook:{},
+            hotbook1:{},
+            hotbook2:{},
             // 数据
             data:hotbook
         }
@@ -24,29 +26,41 @@ export default {
     },
     methods:{
         initChart(){
-            this.hotbook = this.$echarts.init(this.$refs.hot,'dark');
+            this.hotbook1 = this.$echarts.init(this.$refs.hot1,'chalk');
+            this.hotbook2 = this.$echarts.init(this.$refs.hot2,'chalk');
             const option = {
+                backgroundColor: '', //背景透明
                 tooltip: {
                     trigger: 'item',
                 },
                 legend: {
                     top: 'center',
-                    right: 'right'
+                    left: '60%',
+                    textStyle: {
+                        color: '#fff'   // 图例文字颜色
+                    }
                 },
                 title:{
                     text:'计算机学院',
                     top:'center',
-                    left:'center'
+                    left:'19%'
                 },
+                // grid: {
+                //     left: "3%",
+                //     // right: "20%",
+                //     // bottom: "3%",
+                //     containLabel: true,
+                // },
             series: [
                 {
                 name: '书籍类型',
                 type: 'pie',
                 radius: ['40%', '70%'],
                 avoidLabelOverlap: false,
+                center:['35%','50%'],
                 itemStyle: {
-                    borderRadius: 10,
-                    borderColor: '#fff',
+                    borderRadius: 5,
+                    // borderColor: '#fff', //圆形边框
                     borderWidth: 2
                 },
                 label: {
@@ -56,8 +70,8 @@ export default {
                 emphasis: {
                     label: {
                     show: false,
-                    fontSize: '40',
-                    fontWeight: 'bold'
+                    fontSize: '30',
+                    // fontWeight: 'bold'
                     },
                 },
                 labelLine: {
@@ -67,17 +81,16 @@ export default {
             }
         ]
     };
-    this.hotbook.setOption(option)
+    this.hotbook1.setOption(option);
+    this.hotbook2.setOption(option);
     },
 
     updateChart(){
-    //   const Option = {
-
-    //   }
-      this.chartInstance.setOption(option);
 	  window.addEventListener('resize', () => {
-			if (this.chartInstance) {
-				this.chartInstance.resize();}
+			if (this.hotbook1 && this.hotbook2) {
+				this.hotbook1.resize();
+                this.hotbook2.resize();
+            }
 		});
     }
 }
@@ -87,9 +100,12 @@ export default {
 .hotbook{
     width: 100%;
     height: 100%;
+    /* display: flex; */
+    /* justify-content: space-around; */
 }
 .contain{
-    width: 100%;
+    display: inline-block;
+    width: 50%;
     height: 100%;
 }
 

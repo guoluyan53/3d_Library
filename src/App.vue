@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <Header></Header>
     <!-- <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/floor">About</router-link>
@@ -7,7 +8,15 @@
     <router-view/>
   </div>
 </template>
-
+<script>
+    // 导入header.vue文件
+    import Header from './components/public/nav.vue'
+    export default {
+        components: {
+            Header
+        }
+    }
+</script>
 <style lang="less">
 body{
   margin: 0;

@@ -17,22 +17,10 @@ Vue.use(VueRouter)
     component: () => import('../views/Floor.vue')
   },
   {
-    // 学情分析
-    path: '/analyse',
-    name: 'Analyse',
-    component: () => import('../views/Analyse.vue')
-  },
-  {
-    // 导航栏
-    path: '/nav',
-    name: 'nav',
-    component: () => import('../components/public/nav.vue')
-  },
-  {
     // 图书分析
     path: '/book',
     name: 'Book',
-    component: () => import('../components/Book/popo.vue')
+    component: () => import('../views/Book.vue')
   },
   {
     path: '/readTotal',

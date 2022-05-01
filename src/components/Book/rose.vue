@@ -21,21 +21,36 @@ export default {
     },
     mounted(){
         this.initChart();
-        // this.updateChart();
+        this.updateChart();
     },
     methods:{
         initChart(){
-            this.rose = this.$echarts.init(this.$refs.rose,'dark');
+            this.rose = this.$echarts.init(this.$refs.rose,'chalk');
             const option = {
+                backgroundColor: '', //背景透明
+                title: [
+                    {
+                    text: '图书分类借阅比',
+                    left: 'center',
+                    top: 10,
+                    textStyle: {
+                        fontWeight: 'normal',
+                        fontSize: 20
+                    }
+                    }
+                ],
                 legend: {
-                    top: 'bottom'
+                    top: 'bottom',
+                    textStyle: {
+                        color: '#fff'
+                    }
                 },
                 series: [
                     {
                     name: 'Nightingale Chart',
                     type: 'pie',
-                    radius: [50, 250],
-                    center: ['50%', '50%'],
+                    radius: [50 , 100],
+                    center: 'center',
                     roseType: 'area',
                     itemStyle: {
                         borderRadius: 8
@@ -57,14 +72,11 @@ export default {
         },
 
         updateChart(){
-        //   const Option = {
-
-        //   }
-        this.rose.setOption(this.option);
-        window.addEventListener('resize', () => {
-                if (this.chartInstance) {
-                    this.chartInstance.resize();}
-            });
+            window.addEventListener('resize', () => {
+                    if (this.rose) {
+                        this.rose.resize();
+                    }
+                });
         }
     }
 }
@@ -73,10 +85,12 @@ export default {
 .rose{
     width: 100%;
     height: 100%;
+    background-color: transparent;
 }
 .contain{
     width: 100%;
     height: 100%;
+    background-color: transparent;
 }
 
 </style>

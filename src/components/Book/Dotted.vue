@@ -16,16 +16,21 @@ export default {
             dotted:{},
             option:{},
             // 数据
-            data:''
+            data:{
+                types:[], 
+                number:[],
+                lineData:[],  //折线
+                barDate:[]  //柱状
+            }
         }
     },
     mounted(){
         this.initChart();
-        // this.updateChart();
+        this.updateChart();
     },
     methods:{
         initChart(){
-            this.dotted = this.$echarts.init(this.$refs.dotted,'dark');
+            this.dotted = this.$echarts.init(this.$refs.dotted,'chalk ');
             // Generate data
             let category = [];
             let dottedBase = +new Date();
@@ -43,34 +48,52 @@ export default {
             }
             // option
             const option = {
-                backgroundColor: '#0f375f',
+                backgroundColor: '', //背景透明
                 tooltip: {
                     trigger: 'axis',
                     axisPointer: {
                     type: 'shadow'
                     }
                 },
+                title: [
+                    {
+                    text: '馆藏图书利用率',
+                    left: 'center',
+                    bottom: 0,
+                    textStyle: {
+                        fontWeight: 'normal',
+                        fontSize: 20,
+                        color:'#fff'
+                    }
+                    }
+                ],
                 legend: {
                     data: ['line', 'bar'],
                     textStyle: {
-                    color: '#ccc'
+                        color: '#fff'
                     }
                 },
                 xAxis: {
                     data: category,
                     axisLine: {
-                    lineStyle: {
-                        color: '#ccc'
-                    }
+                        lineStyle: {
+                            color: '#fff'
+                        }
                     }
                 },
                 yAxis: {
                     splitLine: { show: false },
                     axisLine: {
                     lineStyle: {
-                        color: '#ccc'
+                        color: '#fff'
                     }
                     }
+                },
+                grid: {
+                    // x: "10%",//x 偏移量
+                    y: "5%", // y 偏移量
+                    width: "87%", // 宽度
+                    height: "70%"// 高度
                 },
                 series: [
                     {
@@ -79,13 +102,13 @@ export default {
                     smooth: true,
                     showAllSymbol: true,
                     symbol: 'emptyCircle',
-                    symbolSize: 15,
+                    symbolSize: 10,
                     data: lineData
                     },
                     {
                     name: 'bar',
                     type: 'bar',
-                    barWidth: 10,
+                    barWidth: 5,
                     itemStyle: {
                         borderRadius: 5,
                         color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
@@ -99,7 +122,7 @@ export default {
                     name: 'line',
                     type: 'bar',
                     barGap: '-100%',
-                    barWidth: 10,
+                    barWidth: 5,
                     itemStyle: {
                         color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
                         { offset: 0, color: 'rgba(20,200,212,0.5)' },
@@ -129,14 +152,10 @@ export default {
         },
 
         updateChart(){
-        //   const Option = {
-
-        //   }
-        this.dotted.setOption(option);
-        window.addEventListener('resize', () => {
-                if (this.chartInstance) {
-                    this.chartInstance.resize();}
-            });
+            window.addEventListener('resize', () => {
+                    if (this.dotted) {
+                        this.dotted.resize();}
+                });
         }
     }
 }

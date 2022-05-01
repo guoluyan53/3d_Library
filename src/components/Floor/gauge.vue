@@ -13,6 +13,9 @@ import axios from 'axios';
 import {shuku1,shuku2,shuku3,shuku4} from '../../assets/data/floor';
 export default {
     name: 'Gauge',
+    props:{
+        Fvalue:Number
+    },
     data(){
         return{
             //图表实例
@@ -24,14 +27,28 @@ export default {
             data:shuku1
         }
     },
+    watch:{
+        Fvalue(newval,old){
+            if(newval==1){
+                this.data = shuku1;
+            }
+            if(newval==2){
+                this.data = shuku2;
+            }
+            if(newval==3){
+                this.data = shuku3;
+            }
+            if(newval==4){
+                this.data = shuku4;
+            }
+            this.initChart();
+        }
+    },
     mounted(){
         this.initChart();
         this.updateChart();
     },
     methods:{
-        changedata(){
-            
-        },
         initChart(){
             this.gauge1 = this.$echarts.init(this.$refs.gauge1,'chalk');
             this.gauge2 = this.$echarts.init(this.$refs.gauge2,'chalk');

@@ -58,19 +58,19 @@ const shuku3 = [
 const shuku4 = [
     {
         name:"文学书库",
-        value:10
+        value:12
     },
     {
         name:"科学书库",
-        value:23
+        value:30
     },
     {
         name:"物理书库",
-        value:8
+        value:14
     },
     {
-        name:"理工书库",
-        value:30
+        name:"期刊书库",
+        value:25
     }
 ]
 

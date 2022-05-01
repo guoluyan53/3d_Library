@@ -46,6 +46,11 @@ export default {
 .active{
 	color: red;
 }
+.nav{
+	width: 100%;
+	height: 10vh;
+	background-color: #0e0c2b;
+}
 .header{
     width: 100%;
     height: 10vh;

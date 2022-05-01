@@ -19,8 +19,8 @@
       <!-- 右 -->
       <div class="right-box">
         <div class="right-top"></div>
-        <div class="right-bottom">
-          <Floorobj :height="400" :width="1000"></Floorobj>
+        <div class="right-bottom" id="rightbom" ref="right">
+          <Floorobj :width='768' :height="481"></Floorobj>
         </div>
       </div>
     </div>
@@ -40,19 +40,23 @@ export default {
 	},
   data(){
     return{
-      width:'700',
-      height:'400'
+      width:0,
+      height:0
     }
   },
   methods:{
     getWH(){
-      this.width = this.$refs.midtop.offsetWidth;
-      this.height = this.$refs.midtop.offsetHight;
+      // var width = document.getElementById('rightbom').clientWidth;
+      // var height = document.getElementById('rightbom').clientHeight;
+      var width = this.$refs.right.clientWidth;
+      var height = this.$refs.right.clientHeight;
+      this.width = width;
+      this.height = height;
       console.log(this.width,this.height);
     }
   },
   mounted(){
-    // this.getWH();
+    this.getWH();
   }
 }
 </script>

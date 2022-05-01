@@ -1,6 +1,6 @@
 <!-- 楼层模型模块-->
 <template>
-  <div id="floorobj" style="width:200px; height200px">
+  <div id="floorobj">
     <div id="label"></div>
   </div>
 </template>
@@ -14,24 +14,25 @@ import { TetrahedronGeometry } from 'three';
 export default {
   name: 'Floorobj',
   props:{
-    width:{type:Number},
-    height:{type:Number},
+    width: Number,
+    height: Number
   },
   data(){
       return {
           scene:null,  //场景
-          camera:null,   //相机
+          camera:null,   //相机 
           renderer:null,  //渲染
           controls:null,  //控制器
           light:null,    //灯光
           container:'',
           composer:'',
-          getName:''
+          getName:'',
       }
   },
   methods:{
       //初始化场景
       initScene(){
+        console.log(this.width,this.height);
           this.scene = new THREE.Scene();
           var axesHelper = new THREE.AxesHelper(1000);
         //   const gridHelper = new THREE.GridHelper( 2000, 100,0xfff,0xfff );
@@ -42,7 +43,7 @@ export default {
       //初始化相机
       initCamera(){
           this.camera = new THREE.PerspectiveCamera(45,this.width / this.height,0.1,10000);
-          this.camera.position.set(0,800,1500);
+          this.camera.position.set(0,200,3000);
           this.camera.lookAt(new THREE.Vector3(0,0,0));
           this.scene.add(this.camera);
       },
@@ -163,12 +164,11 @@ export default {
           groups.push(group4);
 
           this.composer = new Composer(this.renderer,this.scene,this.camera,groups);
-          
       },
 
       /* 窗口变动触发 */
       onWindowResize() {
-        this.camera.aspect = this.width / this.height;
+        // this.camera.aspect = window.innerWidth / window.innerHeight;
         this.camera.updateProjectionMatrix();
         this.renderer.setSize(this.width, this.height);
       },

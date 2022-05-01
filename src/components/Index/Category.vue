@@ -38,21 +38,7 @@ export default {
 			this.chartInstance = this.$echarts.init(this.$refs.cate_ref, 'chalk'); //将图表实例通过ref进行赋值
 			this.alldata = catedata;
 			const initOption = {
-				color: [
-					'#005de7',
-					'#fcd436',
-					'#ff333e',
-					'#58d9f9',
-					'#05c091',
-					'#3ad2f8',
-					'#33ff87',
-					'#38fac9',
-					'#ff7f33',
-					'#914ee4',
-					'#7522dd'
-				],
 				backgroundColor: '',
-
 				series: [
 					{
 						type: 'pie',

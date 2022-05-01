@@ -64,7 +64,7 @@ export default {
                 timeline: {
                     axisType: 'category',
                     orient: 'vertical',
-                    autoPlay: false,  //是否自动播放
+                    // autoPlay: true,  //是否自动播放
                     inverse: true,
                     playInterval: 1000,
                     left: null,

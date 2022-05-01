@@ -55,17 +55,24 @@ export default {
 				马克思学院:'#914ee4'
 			};
 			const initOption = {
-				backgroundColor: '#0b172e',
+				backgroundColor: '',
 				title: {
 					text: '各学院读者近10年阅读量',
 					padding: [4, 20, 150],
 					textStyle: {
 						fontSize: 18, //字体大小
-						color: '#1fd6fc' //字体颜色
+						color: '#fff' //字体颜色
 					}
+				},
+				grid: {
+					left: '15%',
+					right: '1%',
+					bottom: '10%',
+					containLable: true //距离包含坐标轴上的文字
 				},
 				xAxis: {
 					max: 'dataMax',
+					// position: 'top',
 					axisLine: {
 						lineStyle: {
 							color: 'white'
@@ -115,12 +122,12 @@ export default {
 					elements: [
 						{
 							type: 'text',
-							right: 140,
-							bottom: 100,
+							right: 30,
+							bottom: 90,
 							style: {
 								text: this.startYear,
 								fill:"#fff",
-                                fontSize:50,
+                                fontSize:46,
                                 fontWeight:800
 							},
 							z: 100
@@ -200,12 +207,13 @@ export default {
 .container {
 	width: 100%;
 	height: 100%;
-	/* background-image: url('../../assets/image/indexkuang.png');
+	background-image: url('../../assets/image/indexkuang.png');
 	background-repeat: no-repeat;
-	background-size: cover; */
+	background-size: 100% 100%;
 }
 .chart {
 	width: 100%;
 	height: 100%;
+	transform: scale(0.9)
 }
 </style>

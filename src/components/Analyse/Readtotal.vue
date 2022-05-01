@@ -34,13 +34,13 @@ export default {
 		initChart() {
 			this.chartInstance = this.$echarts.init(this.$refs.reader_ref, 'chalk');
 			const initOption = {
-				backgroundColor: '#0b172e',
+				backgroundColor: '',
 				title: {
 					text: '读者年度阅读统计',
-					padding: [4, 20, 150,],
+					padding: [14, 20, 150,],
 					textStyle: {
-						fontSize: 18, //字体大小
-						color: '#1fd6fc' //字体颜色
+						fontSize: 15, //字体大小
+						color: '#fff' //字体颜色
 					}
 				},
 				tooltip: {
@@ -253,9 +253,9 @@ export default {
 .container {
 	width: 100%;
 	height: 100%;
-	/* background-image: url('../../assets/image/indexkuang.png');
+	background-image: url('../../assets/image/indexkuang.png');
 	background-repeat: no-repeat;
-	background-size: cover; */
+	background-size: 100% 100%;
 }
 .chart {
 	width: 100%;

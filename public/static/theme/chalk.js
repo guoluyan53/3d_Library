@@ -22,13 +22,14 @@
     echarts.registerTheme('chalk', {
         "color": [
             "#005de7",
-            "#fcd436",
+            "#fa8278",
             "#7522dd",
-            "#ff333e",
-            "#58d9f9",
-            "#05c091",
-            "#33ff87",
-            "#38fac9"
+            "#5ec5eb",
+            "#fdb650",
+            "#9273fa",
+            "#07eafb",
+            "#347dec",
+            "#3ce8c0"
         ],
         "backgroundColor": "rgba(2,15,35,1)",
         "textStyle": {},
@@ -142,7 +143,7 @@
                 "#38fac9"
             ],
             "label": {
-                "color": "#293441"
+                "color": "#fff"
             }
         },
         "map": {

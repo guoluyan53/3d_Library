@@ -23,6 +23,12 @@ Vue.use(VueRouter)
     component: () => import('../views/Book.vue')
   },
   {
+    // 学情分析
+    path: '/analyse',
+    name: 'Analyse',
+    component: () => import('../views/Analyse.vue')
+  },
+  {
     path: '/readTotal',
     name: 'Read',
     component: () => import('../components/Analyse/Readtotal.vue')
@@ -67,6 +73,7 @@ Vue.use(VueRouter)
     name: 'Change',
     component: () => import('../components/Analyse/Change.vue')
   },
+
 ]
 
 const router = new VueRouter({

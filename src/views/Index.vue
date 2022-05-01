@@ -11,15 +11,15 @@
 					<div class="total">
 						<div class="total1">
 							<p>总藏书量</p>
-							<p>225164万册</p>
+							<p style="color:#2df0d4">225164万册</p>
 						</div>
 						<div class="total2">
 							<p>累计借还量</p>
-							<p>225164万册</p>
+							<p style="color:#2df0d4">225164万册</p>
 						</div>
 						<div class="total3">
 							<p>今日进馆人数</p>
-							<p>2254人</p>
+							<p style="color:#2df0d4">2254人</p>
 						</div>
 					</div>
 
@@ -60,7 +60,6 @@ export default {
 .body-container {
 	display: grid;
 	height: 90vh;
-	margin-top: 10vh;
 	grid-template-columns: 26% 48% 26%;
 	background-color: #020e24
 }

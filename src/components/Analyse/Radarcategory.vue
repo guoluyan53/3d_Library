@@ -1,6 +1,7 @@
-<!--  -->
+<!-- 不同读者阅读偏好雷达图 -->
 <template>
 	<div class="container">
+		<p>不同读者借阅偏好</p>
 		<div class="chart" ref="radar_ref"></div>
 	</div>
 </template>
@@ -32,12 +33,14 @@ export default {
 
 			this.alldata=radardata;
 			const initOption = {
-				title: {
-					text: '不同读者阅读偏好'
-				},
+				backgroundColor:'',
 				legend: {
 					data: ['研究生', '教职工', '本科生', '教授', '其他人员'],
-					icon: 'circle'
+					icon: 'circle',
+					textStyle:{
+                            fontSize: 14,//字体大小
+                            color: '#ffffff'//字体颜色
+                        },
 				},
 				tooltip: {
 					confine: true,
@@ -135,15 +138,23 @@ export default {
 };
 </script>
 <style  scoped>
+p {
+	color:white;
+	font-weight: bolder;
+	margin: 0;
+	padding: 0
+}
 .container {
 	width: 100%;
 	height: 100%;
-	/* background-image: url('../../assets/image/indexkuang.png');
+	align-items: center;
+	background-image: url('../../assets/image/indexkuang.png');
 	background-repeat: no-repeat;
-	background-size: cover; */
+	background-size: 100% 100%;
 }
 .chart {
 	width: 100%;
-	height: 100%;
+	height: 96%;
+	transform: scale(0.9);
 }
 </style>

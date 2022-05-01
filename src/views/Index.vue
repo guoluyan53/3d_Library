@@ -1,10 +1,5 @@
 <!-- 首页门户，放图书馆模型的那一页-->
 <template>
-	<div class="body-box">
-		<div class="top">
-			<p>图书馆数据展示平台</p>
-		</div>
-
 		<!-- 首页下面分成三部分，网格布局 -->
 		<div class="body-container">
 			<div class="content-left">
@@ -39,7 +34,6 @@
 				<Rolldata></Rolldata>
 			</div>
 		</div>
-	</div>
 </template>
 
 <script>
@@ -63,29 +57,12 @@ export default {
 };
 </script>
 <style scoped>
-.body-box {
-	width: 100%;
-	height: 100vh;
-	background-color: #020f23;
-	display: grid;
-	grid-template-rows: 10% 90%;
-}
-.top {
-	background-image: url('../assets/image/head.png');
-	background-repeat: no-repeat;
-	background-size: 100% 100%;
-	color: white;
-	text-align: center;
-	align-items: center;
-	letter-spacing: 2px;
-	font-size: 1.3rem;
-	text-shadow: 0 0 0.4rem #13b1cd, 0 0 0.5rem rgba(255, 255, 255, 0.6), 0 0 1rem rgba(255, 255, 255, 0.8);
-	margin-bottom: 1rem;
-	margin: 0;
-}
 .body-container {
 	display: grid;
+	height: 90vh;
+	margin-top: 10vh;
 	grid-template-columns: 26% 48% 26%;
+	background-color: #020e24
 }
 div[class^='content'] {
 	height: 100vh;
@@ -117,7 +94,7 @@ div[class^='content'] {
 	background-repeat: no-repeat;
 	background-size: contain;
 	z-index: 100;
-	transform: scale(1.3);
+	transform: scale(1.25);
 }
 .total {
 	color: white;

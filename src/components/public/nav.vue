@@ -46,15 +46,11 @@ export default {
 .active{
 	color: red;
 }
-<<<<<<< HEAD
-
-=======
 .nav{
 	width: 100%;
 	height: 10vh;
 	background-color: #0e0c2b;
 }
->>>>>>> 6863654d6aadae1364ad82a0b5675b5294e96c87
 .header{
     width: 100%;
     height: 10vh;

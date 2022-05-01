@@ -23,17 +23,10 @@ Vue.use(VueRouter)
     component: () => import('../views/Book.vue')
   },
   {
-<<<<<<< HEAD
     // 学情分析
     path: '/analyse',
     name: 'Analyse',
     component: () => import('../views/Analyse.vue')
-=======
-    // 测试
-    path: '/g',
-    name: 'ook',
-    component: () => import('../components/Floor/gauge.vue')
->>>>>>> 6863654d6aadae1364ad82a0b5675b5294e96c87
   },
   {
     path: '/readTotal',

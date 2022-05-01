@@ -1,45 +1,46 @@
 <!-- 楼层页，点击图书馆模型进入的那页，默认为第一层-->
 <template>
   <div class="floor">
-    <div class="top">
-      <!-- <p>图书馆数据展示平台</p> -->
-      <HeaderNav></HeaderNav>
-    </div>
 
     <div class="main">
       <!-- 分为左中右三部分 -->
       <!-- 左 -->
       <div class="left-box">
-        <div class="left-top"></div>
-        <div class="left-bottom"></div>
-      </div>
-      <!-- 中 -->
-      <div class="mid-box">
-        <div class="mid-top" ref="midtop">
+        <div class="left-top">
+          <p class="p">书库藏书占比</p>
+          <div class="zujian">
+            <Gauge></Gauge>
+          </div>          
         </div>
-        <div class="mid-bottom"></div>
+        <div class="left-bottom">
+          <Sort></Sort>
+        </div>
       </div>
       <!-- 右 -->
       <div class="right-box">
         <div class="right-top"></div>
-        <div class="right-bottom"></div>
+        <div class="right-bottom">
+          <Floorobj :height="400" :width="1000"></Floorobj>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import HeaderNav from '../components/public/nav.vue'
+import Gauge from '../components/Floor/gauge.vue'
 import Floorobj from '../components/Floor/floorobj.vue';
+import Sort from '../components/Floor/sort.vue'
 export default {
   name: 'Floor',
   components: {
-    HeaderNav,
-		Floorobj
+		Floorobj,
+    Gauge,
+    Sort
 	},
   data(){
     return{
-      width:'600',
+      width:'700',
       height:'400'
     }
   },
@@ -51,91 +52,77 @@ export default {
     }
   },
   mounted(){
-    this.getWH();
+    // this.getWH();
   }
 }
 </script>
 <style scoped>
 .floor {
 	width: 100%;
-	height: 100vh;
+	height: 90vh;
 	background-color: #020f23;
-	display: grid;
-	grid-template-rows: 10% 90%;
 }
-.top {
-	background-image: url('../assets/image/head.png');
-	background-repeat: no-repeat;
-	background-size: 100% 100%;
-	color: white;
-	text-align: center;
-	align-items: center;
-	letter-spacing: 2px;
-	font-size: 1.3rem;
-	text-shadow: 0 0 0.4rem #13b1cd, 0 0 0.5rem rgba(255, 255, 255, 0.6), 0 0 1rem rgba(255, 255, 255, 0.8);
-	margin-bottom: 1rem;
-	margin: 0;
-}
+
 
 .main{
   width: 100%;
   height: 100%;
   display: flex;
   justify-content: space-around;
-  background-color: #13b1cd;
+  background-color: #0e0c2b;
 }
 .left-box{
-  width: 20rem;
+  width: 35%;
   height: 90vh;
   display: flex;
   flex-flow:row wrap;
   justify-content: space-between;
-  background-color: rgb(150, 150, 232);
+  /* background-color: rgb(150, 150, 232); */
+}
+.p{
+  margin: 0;
+  padding: 0.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-align: left;
+  color: white;
 }
 .left-top{
   width: 100%;
-  height: 68%;
-  background-color: blanchedalmond;
+  height: 60%;
+  display: grid;
+  grid-template-rows: 5% 95%;
+  /* background-color: blanchedalmond; */
+  background-image: url("../assets/image/roll_back1.png");
+  background-size: 100% 100%;
+  padding-bottom: 10px;
+  box-sizing: border-box;
 }
 .left-bottom{
   width: 100%;
-  height: 30%;
-  background-color: #ecb576;
+  height: 39%;
+  background-image: url("../assets/image/roll_back1.png");
+  background-size: 100% 100%;
+  /* background-color: #ecb576; */
 }
-.mid-box{
-  width: 50%;
-  height: 100%;
-  display: flex;
-  flex-flow:row wrap;
-  justify-content: space-between;
-  background-color: rgb(243, 156, 240);
-}
-.mid-top{
-  width: 100%;
-  height: 60%;
-  background-color: #ecb576;
-}
-.mid-bottom{
-  width: 100%;
-  height: 37%;
-  background-color: #ecb576;
-}
+
 .right-box{
-  width: 20rem;
+  width: 64%;
   height: 100%;
   display: flex;
   flex-flow:row wrap;
   justify-content: space-between;
-  background-color: rgb(188, 242, 181);
+  /* background-color: rgb(188, 242, 181); */
 }
 .right-top{
   width: 100%;
-  height: 55%;
+  height: 34%;
   background-color: #ecb576;
 }
 .right-bottom{
   width: 100%;
-  height: 40%;
-  background-color: #ecb576;
+  height: 65%;
+  overflow: hidden;
+  /* background-color: #ecb576; */
 }
 </style>

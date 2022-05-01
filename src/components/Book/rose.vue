@@ -40,7 +40,8 @@ export default {
                     }
                 ],
                 legend: {
-                    top: 'bottom',
+                    show:false,
+                    bottom:2,
                     textStyle: {
                         color: '#fff'
                     }
@@ -85,12 +86,11 @@ export default {
 .rose{
     width: 100%;
     height: 100%;
-    background-color: transparent;
 }
 .contain{
     width: 100%;
     height: 100%;
-    background-color: transparent;
+   transform: scale(0.95)
 }
 
 </style>

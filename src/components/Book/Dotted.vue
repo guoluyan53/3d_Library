@@ -59,15 +59,16 @@ export default {
                     {
                     text: '馆藏图书利用率',
                     left: 'center',
-                    bottom: 0,
+                    top:0,
                     textStyle: {
                         fontWeight: 'normal',
-                        fontSize: 20,
+                        fontSize: 18,
                         color:'#fff'
                     }
                     }
                 ],
                 legend: {
+                    padding:[30,50,0,0],  
                     data: ['line', 'bar'],
                     textStyle: {
                         color: '#fff'
@@ -90,10 +91,10 @@ export default {
                     }
                 },
                 grid: {
-                    // x: "10%",//x 偏移量
                     y: "5%", // y 偏移量
                     width: "87%", // 宽度
-                    height: "70%"// 高度
+                    height: "80%",// 高度
+                    bottom:0
                 },
                 series: [
                     {

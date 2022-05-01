@@ -142,7 +142,7 @@ span {
 }
 .studygif {
   width: 100%;
-  height: 80%;
-  margin-top: 18%;
+  height: 70%;
+  margin-top: 30%;
 }
 </style>

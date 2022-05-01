@@ -82,7 +82,7 @@ div[class^='content'] {
 	display: grid;
 	grid-template-rows: 25% 75%;
 	padding-top: 1rem;
-	background-image: url('../assets/image/bodyback.png');
+	background-image: url('../assets/image/book_back.png');
 	background-repeat: no-repeat;
 	background-size: 100% 100%;
 }

@@ -1,16 +1,16 @@
 <!-- 分类饼图 -->
 <template>
-	<div class="container">
-		<div class="title">
-			<p class="title-p">分类借阅比率</p>
-		</div>
-		<div class="chart-box">
-			<div
-			    class="chart"
-			    ref="cate_ref"
-			></div>
-	</div>
-	</div>
+  <div class="container">
+    <div class="title">
+      <p class="title-p">分类借阅比率</p>
+    </div>
+    <div class="chart-box">
+      <div
+        class="chart"
+        ref="cate_ref"
+      ></div>
+  </div>
+  </div>
 </template>
 
 
@@ -47,7 +47,7 @@ export default {
             type: "pie",
             radius: ["40%", "70%"],
             center: ["50%", "50%"],
-			 avoidLabelOverlap: false,
+            avoidLabelOverlap: false,
             emphasis: {
               itemStyle: {
                 shadowBlur: 10,
@@ -55,34 +55,14 @@ export default {
                 shadowColor: "rgba(0, 0, 0, 0.5)",
               },
             },
-            toolbox: {
-              show: true,
-              feature: {
-                mark: { show: true },
-                dataView: { show: true, readOnly: false },
-              },
-            },
             data: this.alldata,
             tooltip: {
-              trigger: "axis",
-              axisPointer: {
-                type: "shadow",
-              },
+              trigger: "item",
             },
             universalTransition: true,
             label: {
               show: true,
               formatter: "{b} : {d}%",
-              color: [
-                "#005de7",
-                "#fcd436",
-                "#7522dd",
-                "#ff333e",
-                "#58d9f9",
-                "#05c091",
-                "#33ff87",
-                "#38fac9",
-              ],
               textStyle: {
                 fontSize: 14,
                 color: "#ffffff",

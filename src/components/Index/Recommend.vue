@@ -72,7 +72,7 @@ export default {
 <style >
 .bookbox {
   margin-left: 1rem;
-  background-color: #020f22;
+  background-color: #000612;
   width: 42rem;
   height: 100vh;
   padding: 0;

@@ -24,7 +24,10 @@ export default {
         this.updateChart();
     },
     methods:{
-        initChart(){
+        async initChart(){
+            await axios.get('/api//BookAnalysis/PieRoseType').then(res=>{
+                this.data = res.data.data;
+            });
             this.rose = this.$echarts.init(this.$refs.rose,'chalk');
             const option = {
                 backgroundColor: '', //背景透明
@@ -54,18 +57,19 @@ export default {
                     center: 'center',
                     roseType: 'area',
                     itemStyle: {
-                        borderRadius: 8
+                        
+                        normal: {
+                            borderRadius: 8,
+                            label: {                 //指示到模块的标签文字
+                                show: true,
+                                color:'white',
+                            },
+                            labelLine: {             //指示到模块的标签线
+                                show: true,
+                            }
+                        }
                     },
-                    data: [
-                        { value: 40, name: 'rose 1' },
-                        { value: 38, name: 'rose 2' },
-                        { value: 32, name: 'rose 3' },
-                        { value: 30, name: 'rose 4' },
-                        { value: 28, name: 'rose 5' },
-                        { value: 26, name: 'rose 6' },
-                        { value: 22, name: 'rose 7' },
-                        { value: 18, name: 'rose 8' }
-                    ]
+                    data: this.data
                     }
                 ]
             };

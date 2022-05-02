@@ -43,24 +43,21 @@ export default {
             // resdata = JSON.parse(JSON.stringify(res.data));
             // console.log(resdata);
             resdata = res.data.data;
-            console.log(res);
-            console.log(resdata);
           })
-          console.log(resdata.timelines);
           this.popo = this.$echarts.init(this.$refs.popo,'chalk');
           const itemStyle = {
                 opacity: 0.8
           };
           const sizeFunction = function (x) {
-                var y = Math.sqrt(x / 5e8) + 0.1;
+                var y = Math.sqrt(x / 5e6) + 0.1;
                 return y * 80;
           };
           // Schema:
           const schema = [
-            { name: 'Income', index: 0, text: '人均收入', unit: '美元' },
-            { name: 'LifeExpectancy', index: 1, text: '人均寿命', unit: '岁' },
-            { name: 'Population', index: 2, text: '总人口', unit: '' },
-            { name: 'Country', index: 3, text: '家', unit: '' }
+            { name: 'Income', index: 0, text: '绝对平均册借次', unit: '次' },
+            { name: 'LifeExpectancy', index: 1, text: '相对平均册借次', unit: '次' },
+            { name: 'Population', index: 2, text: '累计总借阅数', unit: '本' },
+            { name: 'Country', index: 3, text: '书籍类别', unit: '' }
           ];
           const initOption = {
               backgroundColor: '', //背景透明
@@ -123,19 +120,19 @@ export default {
                 grid: {
                     top: 100,
                     containLabel: true,
-                    left: 30,
+                    left: 50,
                     right: '110'
                 },
                 xAxis: {
                     type: 'log',
-                    name: '人均收入',
-                    max: 100000,
-                    min: 300,
+                    name: '学科绝对平均册借次',
+                    // max: 10,
+                    // min: 0,
                     nameGap: 25,
                     nameLocation: 'middle',
                     nameTextStyle: {
-                    fontSize: 18,
-                    color:'#fff'
+                        fontSize: 18,
+                        color:'#fff'
                     },
                     axisLine:{
 		                lineStyle:{
@@ -144,32 +141,34 @@ export default {
 		                }
 		            },
                     splitLine: {
-                    show: false
+                        show: false
                     },
                     axisLabel: {
-                    formatter: '{value} $',
-                    textStyle: {
-                         color:  '#fff' , //坐标值得具体的颜色
- 
-                     }
+                        interval:0,
+                        formatter: '{value} 次',
+                        textStyle: {
+                            color:  '#fff' , //坐标值得具体的颜色
+    
+                        }
                     }
                 },
                 yAxis: {
                     type: 'value',
-                    name: '平均寿命',
-                    max: 100,
+                    name: '学科平均相对册借次',
+                    max: 10,
+                    nameLocation:'middle',
+                    nameGap:'40',
                     nameTextStyle: {
                         fontSize: 18,
-                        color:'#fff'
+                        color:'#fff',
                     },
                     splitLine: {
                     show: false
                     },
                     axisLabel: {
-                    formatter: '{value} 岁',
+                    formatter: '{value} 次',
                     textStyle: {
                          color:  '#fff' , //坐标值得具体的颜色
- 
                     }
                     },
                     axisLine:{

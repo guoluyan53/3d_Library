@@ -16,12 +16,13 @@ export default {
             dotted:{},
             option:{},
             // 数据
-            data:{
-                types:[], 
-                number:[],
-                lineData:[],  //折线
-                barDate:[]  //柱状
-            }
+            data:''
+            // {
+            //     types:[], 类型X轴
+            //     number:[], 数量Y轴
+            //     lineData:[],  //折线
+            //     barDate:[]  //柱状
+            // }
         }
     },
     mounted(){
@@ -29,24 +30,12 @@ export default {
         this.updateChart();
     },
     methods:{
-        initChart(){
+        async initChart(){
             this.dotted = this.$echarts.init(this.$refs.dotted,'chalk ');
-            // Generate data
-            let category = [];
-            let dottedBase = +new Date();
-            let lineData = [];
-            let barData = [];
-            for (let i = 0; i < 20; i++) {
-            let date = new Date((dottedBase += 3600 * 24 * 1000));
-            category.push(
-                [date.getFullYear(), date.getMonth() + 1, date.getDate()].join('-')
-            );
-            let b = Math.random() * 200;
-            let d = Math.random() * 200;
-            barData.push(b);
-            lineData.push(d + b);
-            }
-            // option
+            await axios.get('/api/BookAnalysis/CollectionUtilization').then(res=>{
+                this.data = res.data.data;
+                console.log(res);
+            })
             const option = {
                 backgroundColor: '', //背景透明
                 tooltip: {
@@ -57,7 +46,7 @@ export default {
                 },
                 title: [
                     {
-                    text: '馆藏图书利用率',
+                    text: '馆藏图书利用率',  //这里标题还要改
                     left: 'center',
                     top:0,
                     textStyle: {
@@ -75,39 +64,48 @@ export default {
                     }
                 },
                 xAxis: {
-                    data: category,
+                    data: this.data.types,  //书籍的分类
                     axisLine: {
                         lineStyle: {
                             color: '#fff'
                         }
-                    }
+                    },
+                    axisLabel: {
+                        textStyle: {
+                            color: '#fff',
+                            fontSize:8
+                        },                        
+                        interval: '0' ,
+                        rotate: 40
+                    },
                 },
                 yAxis: {
                     splitLine: { show: false },
                     axisLine: {
-                    lineStyle: {
-                        color: '#fff'
-                    }
-                    }
+                        lineStyle: {
+                            color: '#fff'
+                        }
+                    },
                 },
                 grid: {
+                    x: "15%",
                     y: "5%", // y 偏移量
-                    width: "87%", // 宽度
+                    width: "80%", // 宽度
                     height: "80%",// 高度
                     bottom:0
                 },
                 series: [
                     {
-                    name: 'line',
+                    name: 'line（总馆藏量）',
                     type: 'line',
                     smooth: true,
                     showAllSymbol: true,
                     symbol: 'emptyCircle',
                     symbolSize: 10,
-                    data: lineData
+                    data: this.data.lineData
                     },
                     {
-                    name: 'bar',
+                    name: 'bar（年度借阅量）',
                     type: 'bar',
                     barWidth: 5,
                     itemStyle: {
@@ -117,10 +115,10 @@ export default {
                         { offset: 1, color: '#43eec6' }
                         ])
                     },
-                    data: barData
+                    data: this.data.barData
                     },
                     {
-                    name: 'line',
+                    name: 'line（总馆藏量）',
                     type: 'bar',
                     barGap: '-100%',
                     barWidth: 5,
@@ -132,10 +130,10 @@ export default {
                         ])
                     },
                     z: -12,
-                    data: lineData
+                    data: this.data.lineData
                     },
                     {
-                    name: 'dotted',
+                    name: 'dotted（总馆藏量）',
                     type: 'pictorialBar',
                     symbol: 'rect',
                     itemStyle: {
@@ -145,7 +143,7 @@ export default {
                     symbolSize: [12, 4],
                     symbolMargin: 1,
                     z: -10,
-                    data: lineData
+                    data: this.data.lineData
                     }
                 ]
             };

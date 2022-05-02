@@ -24,18 +24,21 @@ export default {
         this.updateChart();
     },
     methods:{
-        initChart(){
+        async initChart(){ 
+            await axios.get('/api/BookAnalysis/HotPublishing').then(res=>{
+                this.data = res.data.data;
+            })
             this.top = this.$echarts.init(this.$refs.top,'chalk');
             //Y轴的数据，和数据值位置一一对应
-            var cate = [
-                "人民教育出版社",
-                "人民邮电出版社",
-                "清华大学出版社",
-                "科学出版社",   
-                "教育科学出版社",
-            ];
+            // var cate = [
+            //     "人民教育出版社",
+            //     "人民邮电出版社",
+            //     "清华大学出版社",
+            //     "科学出版社",   
+            //     "教育科学出版社",
+            // ];
             //数据值，顺序和Y轴的名字一一对应
-            var barData = [3214, 4322, 5244, 8187, 9000];
+            // var barData = [3214, 4322, 5244, 8187, 9000];
             var option = {
                 backgroundColor: '', //背景透明
                 title: {
@@ -80,7 +83,7 @@ export default {
                 },
                 yAxis: {
                     type: "category",
-                    data: cate,   //y轴的数据：书本名
+                    data: this.data.bookname,   //y轴的数据：书本名
                     //升序
                     inverse: true,
                     splitLine: { show: false },
@@ -109,7 +112,7 @@ export default {
                     realtimeSort: true,
                     name: "数量",
                     type: "bar",
-                    data: barData,  //x轴数据：借阅数量，x轴不显示
+                    data: this.data.value,  //x轴数据：借阅数量，x轴不显示
                     barWidth: 14,
                     barGap: 10,
                     smooth: true,

@@ -50,7 +50,7 @@
   </div>
 </template>
 
-<script>
+<script> 
 import Gauge from '../components/Floor/gauge.vue'
 import Floorobj from '../components/Floor/floorobj.vue';
 import Sort from '../components/Floor/sort.vue';

@@ -15,7 +15,7 @@ module.exports = {
       open: true, // 自动启动浏览器
       proxy: { // 配置多个跨域
         "/api": { // 取名任意
-          target: `http://localhost:8080`, // 后端给的服务器地址
+          target: `http://127.0.0.1:5000`, // 后端给的服务器地址
           changeOrigin: true, // 发送请求头中host会设置成target，即是否允许跨域
           secure: false, // 如果是https，需要配置该参数
           pathRewrite: {

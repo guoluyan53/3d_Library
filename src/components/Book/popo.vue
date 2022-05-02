@@ -39,11 +39,14 @@ export default {
     // 初始化图表
 	  async initChart(){
           var resdata;
-          await axios.get('/data/popo.json').then(res=>{
-            resdata = JSON.parse(JSON.stringify(res.data));
+          await axios.get('/api/BookAnalysis/RelationshipEvolution').then(res=>{
+            // resdata = JSON.parse(JSON.stringify(res.data));
+            // console.log(resdata);
+            resdata = res.data.data;
+            console.log(res);
             console.log(resdata);
           })
-          console.log(resdata.timeline);
+          console.log(resdata.timelines);
           this.popo = this.$echarts.init(this.$refs.popo,'chalk');
           const itemStyle = {
                 opacity: 0.8
@@ -87,7 +90,7 @@ export default {
                 },
                 title: [
                     {
-                    text: resdata.timeline[0],
+                    text: resdata.timelines[0],
                     textAlign: 'center',
                     left: '63%',
                     top: '55%',
@@ -180,7 +183,7 @@ export default {
                     {
                     show: false,
                     dimension: 3,
-                    categories: resdata.counties, //数据
+                    categories: resdata.types, //数据
                     inRange: {
                         color: (function () {
                         // prettier-ignore
@@ -206,15 +209,15 @@ export default {
                 },
                 options: []
             };
-            for (var n = 0; n < resdata.timeline.length; n++) {
-                initOption.baseOption.timeline.data.push(resdata.timeline[n]);
+            for (var n = 0; n < resdata.timelines.length; n++) {
+                initOption.baseOption.timeline.data.push(resdata.timelines[n]);
                 initOption.options.push({
                 title: {
                     show: true,
-                    text: resdata.timeline[n] + ''
+                    text: resdata.timelines[n] + ''
                 },
                 series: {
-                    name: resdata.timeline[n],
+                    name: resdata.timelines[n],
                     type: 'scatter',
                     itemStyle: itemStyle,
                     data: resdata.series[n],

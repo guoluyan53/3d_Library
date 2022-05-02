@@ -20,7 +20,7 @@
 						<span class="span1"></span>
 						<span class="span2"></span>
 						<span class="span3"></span>
-						<span class="span4"></span>楼层导航</a>
+						<span class="span4"></span>楼层监控</a>
 			</div>
 			<div class="mid">图书馆数据展示平台</div>
 			<div class="right">
@@ -32,7 +32,7 @@
 					<span class="span1"></span>
 					<span class="span2"></span>
 					<span class="span3"></span>
-					<span class="span4"></span>图书寻找</a>
+					<span class="span4"></span>图书信息</a>
 					<a
 					    class="button4"
 					    @click="toIndex(4)"
@@ -68,6 +68,7 @@ export default {
 <style scoped>
 .active {
   color: white;
+  font-weight: 600;
   text-shadow: 0 0 6px rgb(18, 190, 243), 0 0 8px rgb(18, 190, 243),
     0 0 10px rgb(18, 190, 243);
   background-image: linear-gradient(

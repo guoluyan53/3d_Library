@@ -114,4 +114,7 @@ div[class^='content'] {
 .total p {
 	font-size: 0.5rem;
 }
+.book{
+	cursor:crosshair;
+}
 </style>

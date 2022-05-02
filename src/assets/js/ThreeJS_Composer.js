@@ -198,7 +198,7 @@ function getName(_renderer,_scene,camera){
     }
 }
 
-function bounceAnimation(val,_groups,_scene,_camera,_renderer,_width,_he){
+function bounceAnimation(val,_groups,_scene,_camera,_renderer,_width,_height){
     // 发光效果
      let composer = new EffectComposer(_renderer);
      var renderPass = new RenderPass( _scene, _camera );

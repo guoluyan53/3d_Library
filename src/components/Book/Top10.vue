@@ -28,18 +28,18 @@ export default {
             this.top = this.$echarts.init(this.$refs.top,'chalk');
             //Y轴的数据，和数据值位置一一对应
             var cate = [
-                "JavaScript入门",
-                "Threejs",
-                "人世间",
-                "活着",
-                "平凡的世界",
+                "人民教育出版社",
+                "人民邮电出版社",
+                "清华大学出版社",
+                "科学出版社",
+                "教育科学出版社",
             ];
             //数据值，顺序和Y轴的名字一一对应
-            var barData = [730, 801, 924, 1259, 1600];
+            var barData = [3214, 4322, 5244, 8187, 9000];
             var option = {
                 backgroundColor: '', //背景透明
                 title: {
-                    text: "本月借阅书籍top5",
+                    text: "热门出版社top5",
                     x:"center",
                     y:20,
                     textStyle:{

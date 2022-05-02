@@ -6,7 +6,7 @@
 				<a
 				    class="button1"
 				    @click="toIndex(1)"
-				    :class="{'active':current==1}"
+				    :class="{'active':$route.name=='Index'}"
 				>
 					<span class="span1"></span>
 					<span class="span2"></span>
@@ -15,7 +15,7 @@
 					<a
 					    class="button2"
 					    @click="toIndex(2)"
-					    :class="{'active':current==2}"
+					    :class="{'active':$route.name=='Floor'}"
 					>
 						<span class="span1"></span>
 						<span class="span2"></span>
@@ -27,7 +27,7 @@
 				<a
 				    class="button3"
 				    @click="toIndex(3)"
-				    :class="{'active':current==3}"
+				    :class="{'active':$route.name=='Book'}"
 				>
 					<span class="span1"></span>
 					<span class="span2"></span>
@@ -36,7 +36,7 @@
 					<a
 					    class="button4"
 					    @click="toIndex(4)"
-					    :class="{'active':current==4}"
+					    :class="{'active':$route.name=='Analyse'}"
 					>
 						<span class="span1"></span>
 						<span class="span2"></span>
@@ -50,26 +50,17 @@
 <script>
 export default {
   name: "Head_nav",
-  data() {
-    return {
-      current: 1,
-    };
-  },
   methods: {
     toIndex(e) {
       if (e == 1) {
         this.$router.push("/");
-        this.current = e;
       } else if (e == 2) {
         this.$router.push("/floor");
-        this.current = e;
       } else if (e == 3) {
         this.$router.push("/book");
-        this.current = e;
       } else if (e == 4) {
         this.$router.push("/analyse");
-        this.current = e;
-      }
+    }
     },
   },
 };

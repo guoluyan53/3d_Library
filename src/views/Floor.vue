@@ -20,7 +20,7 @@
       <div class="right-box">
         <div class="right-top">
           <div class="envtest">
-            <p class="envtitle">楼层环境监测（F{{curF}}）</p>
+            <p class="envtitle">楼层环境监测（{{curF}}F）</p>
             <div class="envcontent">
               <li>温度 <span>26℃</span> </li>
               <li>湿度 <span>12%RH</span> </li>
@@ -31,11 +31,13 @@
             </div>
           </div>
           <div class="electory">
-            <Electory></Electory>
+            <Electory :curF="curF"></Electory>
           </div>
         </div>
         <div class="right-bottom">
-          <div class="louceng"></div>
+          <div class="louceng" ref="right">
+            <Floorobj :width="width" :height="height" :curF="curF"></Floorobj>
+          </div>
           <div class="navlou">
             <div class="f" @click="changeF(4)" :class="{'factive':curF==4}">4F</div>
             <div class="f" @click="changeF(3)" :class="{'factive':curF==3}">3F</div>
@@ -104,7 +106,7 @@ export default {
     this.timer = setInterval(function(){
       that.curtime = new Date().toLocaleString();
     },1000)
-    // this.getWH();
+    this.getWH();
   },
   beforeDestory: function(){
     if(this.timer) {
@@ -253,7 +255,7 @@ export default {
 .louceng{
   width: 70%;
   height: 100%;
-  background-color: #aad498;
+  /* background-color: #aad498; */
 }
 .navlou{
   width: 25%;

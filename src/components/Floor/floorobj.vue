@@ -1,21 +1,21 @@
 <!-- 楼层模型模块-->
 <template>
   <div id="floorobj">
-    <div id="label"></div>
+    <!-- <div id="label"></div> -->
   </div>
 </template>
-
+ 
 <script>
 import * as THREE from "three";
 import {OrbitControls} from "three/examples/jsm/controls/OrbitControls";
-import {Composer,getName} from "../../assets/js/ThreeJS_Composer";
-import TWEEN from '@tweenjs/tween.js';
-import { TetrahedronGeometry } from 'three';
+import {Composer,getName,bounceAnimation} from "../../assets/js/ThreeJS_Composer";
+import TWEEN from '@tweenjs/tween.js';  
 export default {
   name: 'Floorobj',
   props:{
     width: Number,
-    height: Number
+    height: Number,
+    curF: Number
   },
   data(){
       return {
@@ -27,23 +27,108 @@ export default {
           container:'',
           composer:'',
           getName:'',
+          louceng:1,
+          groups:[]  //模型组
       }
   },
-  methods:{
+  watch:{
+    width(newval,od){
+      this.width = newval; 
+      this.init();
+      this.initmodel(); 
+      this.animate();
+    },
+    height(newval,old){  
+      this.height = newval;
+    },
+    curF(newval,old){
+      this.louceng = newval
+      bounceAnimation(this.louceng,this.groups,this.scene,this.camera,this.renderer,this.width,this.height);
+    }
+  }, 
+  methods:{ 
+      // 弹出动画 
+      bounceAnimation(val,_groups,_scene,_camera,_renderer){
+        // 发光效果
+         let composer = new EffectComposer(_renderer);
+         var renderPass = new RenderPass( _scene, _camera );
+          composer.addPass( renderPass );
+          var outlinePass = new OutlinePass( new THREE.Vector2( this.width, window.innerHeight ), _scene, _camera );
+          outlinePass.edgeStrength = 5;//包围线浓度
+          outlinePass.edgeGlow = 1;//边缘线范围 
+          outlinePass.edgeThickness = 2;//边缘线浓度
+          outlinePass.pulsePeriod = 2;//包围线闪烁频率
+          outlinePass.visibleEdgeColor.set( '#787899' );//包围线颜色
+          outlinePass.hiddenEdgeColor.set( '#190a05' );//被遮挡的边界线颜色
+          composer.addPass( outlinePass );
+          var effectFXAA = new ShaderPass( FXAAShader );
+          effectFXAA.uniforms[ 'resolution' ].value.set( 1 / this.width, 1 / this.height );
+          effectFXAA.renderToScreen = true;
+          composer.addPass( effectFXAA );
+
+        // 弹出动画
+        if(val == 1){
+            outlinePass.selectedObjects = _groups[1]; 
+            new TWEEN.Tween(_groups[1].position).to({
+                y:100
+            },1000).easing(TWEEN.Easing.Elastic.Out).onComplete(function(){}).start();
+            new TWEEN.Tween(_groups[2].position).to({
+                y:130
+            },2000).easing(TWEEN.Easing.Elastic.Out).onComplete(function(){}).start();
+            new TWEEN.Tween(_groups[3].position).to({
+                y:160
+            },3000).easing(TWEEN.Easing.Elastic.Out).onComplete(function(){}).start();
+        }else if(val ==2){
+            new TWEEN.Tween(_groups[1].position).to({
+                y:-80
+            },1000).easing(TWEEN.Easing.Elastic.Out).onComplete(function(){}).start();
+            new TWEEN.Tween(_groups[2].position).to({
+                y:150
+            },1000).easing(TWEEN.Easing.Elastic.Out).onComplete(function(){}).start();
+            new TWEEN.Tween(_groups[3].position).to({
+                y:180
+            },2000).easing(TWEEN.Easing.Elastic.Out).onComplete(function(){}).start();
+        }else if(val==3){
+            new TWEEN.Tween(_groups[0].position).to({
+                y:-150
+            },1000).easing(TWEEN.Easing.Elastic.Out).onComplete(function(){}).start();
+            new TWEEN.Tween(_groups[1].position).to({
+                y:-120
+            },1000).easing(TWEEN.Easing.Elastic.Out).onComplete(function(){}).start();
+            new TWEEN.Tween(_groups[2].position).to({
+                y:-90
+            },2000).easing(TWEEN.Easing.Elastic.Out).onComplete(function(){}).start();
+        }else if(val==4){
+            new TWEEN.Tween(_groups[0].position).to({
+                y:-150
+            },1000).easing(TWEEN.Easing.Elastic.Out).onComplete(function(){}).start();
+            new TWEEN.Tween(_groups[1].position).to({
+                y:-120
+            },1000).easing(TWEEN.Easing.Elastic.Out).onComplete(function(){}).start();
+            new TWEEN.Tween(_groups[2].position).to({
+                y:-90
+            },2000).easing(TWEEN.Easing.Elastic.Out).onComplete(function(){}).start();
+            new TWEEN.Tween(_groups[3].position).to({
+                y:-60
+            },2000).easing(TWEEN.Easing.Elastic.Out).onComplete(function(){}).start();
+        }
+
+      },
       //初始化场景
       initScene(){
         console.log(this.width,this.height);
           this.scene = new THREE.Scene();
-          var axesHelper = new THREE.AxesHelper(1000);
+          // var axesHelper = new THREE.AxesHelper(1000);
+          this.scene.background = new THREE.Color( 0x0e0c2b );
         //   const gridHelper = new THREE.GridHelper( 2000, 100,0xfff,0xfff );
         //   this.scene.add( gridHelper );
         //   this.scene.fog = new THREE.Fog( this.scene.background, 3000, 5000 );
-          this.scene.add(axesHelper);
-      },
+          // this.scene.add(axesHelper);
+      }, 
       //初始化相机
       initCamera(){
           this.camera = new THREE.PerspectiveCamera(45,this.width / this.height,0.1,10000);
-          this.camera.position.set(0,200,3000);
+          this.camera.position.set(-700,500,1200);
           this.camera.lookAt(new THREE.Vector3(0,0,0));
           this.scene.add(this.camera);
       },
@@ -60,8 +145,9 @@ export default {
       },
       // 初始化渲染器
       initRenderer() {
-          this.renderer = new THREE.WebGLRenderer({antialias: true});
+          this.renderer = new THREE.WebGLRenderer({antialias: true,alpha: true});
           this.renderer.setSize(this.width,this.height);
+          this.renderer.setClearAlpha(0.0);
         //   this.renderer.setClearColor(0x4682B4,1.0);
           this.container = document.getElementById("floorobj");
           this.container.appendChild(this.renderer.domElement);
@@ -85,9 +171,10 @@ export default {
           this.initLight();
           this.initRenderer();
           this.initOrbitControls();
+          this.animate();
           /* 监听事件,监听窗口变动 */
-          window.addEventListener('resize', this.onWindowResize, false);
-          this.getName = new getName(this.renderer,this.scene,this.camera);
+          document.getElementById('floorobj').addEventListener('resize', this.onWindowResize, false);
+          // this.getName = new getName(this.renderer,this.scene,this.camera);
       },
       //初始化模型函数合集
       initmodel(){
@@ -157,18 +244,18 @@ export default {
           this.scene.add(group2);
           this.scene.add(group3);
           this.scene.add(group4);
-          var groups = [];
-          groups.push(group1);
-          groups.push(group2);
-          groups.push(group3);
-          groups.push(group4);
+          // var groups = [];
+          this.groups.push(group1);
+          this.groups.push(group2);
+          this.groups.push(group3);
+          this.groups.push(group4);
 
-          this.composer = new Composer(this.renderer,this.scene,this.camera,groups);
+          // this.composer = new Composer(this.renderer,this.scene,this.camera,this.groups);
       },
 
       /* 窗口变动触发 */
       onWindowResize() {
-        // this.camera.aspect = window.innerWidth / window.innerHeight;
+        this.camera.aspect = this.width /this.height;
         this.camera.updateProjectionMatrix();
         this.renderer.setSize(this.width, this.height);
       },
@@ -176,8 +263,8 @@ export default {
       animate() {
           this.renderer.render(this.scene, this.camera);
           requestAnimationFrame(this.animate);
-          TWEEN.update();
-          this.composer.render();
+          TWEEN.update(); 
+          // this.composer.render();
       },
       //创建封装地板函数
       createBox(width,height,depth,angle,meterial,x,y,z,name){
@@ -211,10 +298,9 @@ export default {
 
   },
   mounted(){
-      
       this.init();
       this.initmodel();
-      this.animate();
+      // this.bounceAnimation(this.curF,this.groups)
 
   },
   destroyed(){

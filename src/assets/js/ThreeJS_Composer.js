@@ -198,7 +198,74 @@ function getName(_renderer,_scene,camera){
     }
 }
 
+function bounceAnimation(val,_groups,_scene,_camera,_renderer,_width,_he){
+    // 发光效果
+     let composer = new EffectComposer(_renderer);
+     var renderPass = new RenderPass( _scene, _camera );
+      composer.addPass( renderPass );
+      var outlinePass = new OutlinePass( new THREE.Vector2( _width, _height ), _scene, _camera );
+      outlinePass.edgeStrength = 5;//包围线浓度
+      outlinePass.edgeGlow = 1;//边缘线范围 
+      outlinePass.edgeThickness = 2;//边缘线浓度
+      outlinePass.pulsePeriod = 2;//包围线闪烁频率
+      outlinePass.visibleEdgeColor.set( '#787899' );//包围线颜色
+      outlinePass.hiddenEdgeColor.set( '#190a05' );//被遮挡的边界线颜色
+      composer.addPass( outlinePass );
+      var effectFXAA = new ShaderPass( FXAAShader );
+      effectFXAA.uniforms[ 'resolution' ].value.set( 1 / _width, 1 / _height );
+      effectFXAA.renderToScreen = true;
+      composer.addPass( effectFXAA );
+
+    // 弹出动画
+    if(val == 1){
+        outlinePass.selectedObjects = _groups[1]; 
+        new TWEEN.Tween(_groups[1].position).to({
+            y:100
+        },1000).easing(TWEEN.Easing.Elastic.Out).onComplete(function(){}).start();
+        new TWEEN.Tween(_groups[2].position).to({
+            y:130
+        },2000).easing(TWEEN.Easing.Elastic.Out).onComplete(function(){}).start();
+        new TWEEN.Tween(_groups[3].position).to({
+            y:160
+        },3000).easing(TWEEN.Easing.Elastic.Out).onComplete(function(){}).start();
+    }else if(val ==2){
+        new TWEEN.Tween(_groups[1].position).to({
+            y:-80
+        },1000).easing(TWEEN.Easing.Elastic.Out).onComplete(function(){}).start();
+        new TWEEN.Tween(_groups[2].position).to({
+            y:150
+        },1000).easing(TWEEN.Easing.Elastic.Out).onComplete(function(){}).start();
+        new TWEEN.Tween(_groups[3].position).to({
+            y:180
+        },2000).easing(TWEEN.Easing.Elastic.Out).onComplete(function(){}).start();
+    }else if(val==3){
+        new TWEEN.Tween(_groups[0].position).to({
+            y:-150
+        },1000).easing(TWEEN.Easing.Elastic.Out).onComplete(function(){}).start();
+        new TWEEN.Tween(_groups[1].position).to({
+            y:-120
+        },1000).easing(TWEEN.Easing.Elastic.Out).onComplete(function(){}).start();
+        new TWEEN.Tween(_groups[2].position).to({
+            y:-90
+        },2000).easing(TWEEN.Easing.Elastic.Out).onComplete(function(){}).start();
+    }else if(val==4){
+        new TWEEN.Tween(_groups[0].position).to({
+            y:-150
+        },1000).easing(TWEEN.Easing.Elastic.Out).onComplete(function(){}).start();
+        new TWEEN.Tween(_groups[1].position).to({
+            y:-120
+        },1000).easing(TWEEN.Easing.Elastic.Out).onComplete(function(){}).start();
+        new TWEEN.Tween(_groups[2].position).to({
+            y:-90
+        },2000).easing(TWEEN.Easing.Elastic.Out).onComplete(function(){}).start();
+        new TWEEN.Tween(_groups[3].position).to({
+            y:-60
+        },2000).easing(TWEEN.Easing.Elastic.Out).onComplete(function(){}).start();
+    }
+}
+
 export {
     Composer,
-    getName
+    getName,
+    bounceAnimation
 }

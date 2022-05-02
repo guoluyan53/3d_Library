@@ -7,15 +7,25 @@
 
 <script>
 import axios from 'axios';
+import {electory} from '../../assets/data/floor'
 export default {
     name: 'Electory',
+    props:{
+        curF:Number
+    },
     data(){
         return{
             //图表实例
             electory:{},
             option:{},
             // 数据
-            data:''
+            data:electory[0],
+        }
+    },
+    watch:{
+        curF(newval,old){
+            this.data = electory[newval-1];
+            this.initChart();
         }
     },
     mounted(){
@@ -90,7 +100,7 @@ export default {
                     type: 'line',
                     smooth: true,
                     // prettier-ignore
-                    data: [300, 280, 250, 260, 270, 300, 550, 500, 400, 390, 380, 390, 400, 500, 600, 750, 800, 700, 600, 400],
+                    data: this.data,
                     markArea: {
                         itemStyle: {
                         color: 'rgba(32, 110, 212, 0.2)'

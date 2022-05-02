@@ -9,7 +9,6 @@ import VueAxios from 'vue-axios'
 import '../public/static/lib/echarts.min'
 import scroll from 'vue-seamless-scroll'
 
-
 Vue.use(scroll)
 Vue.use(VueAxios, axios)
 

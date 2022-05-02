@@ -29,12 +29,6 @@ Vue.use(VueRouter)
       component: () => import('../views/Analyse.vue')
   },
   {
-    // 测试
-    path: '/g',
-    name: 'ook',
-    component: () => import('../components/Floor/gauge.vue')
-  },
-  {
     path: '/readTotal',
     name: 'Read',
     component: () => import('../components/Analyse/Readtotal.vue')

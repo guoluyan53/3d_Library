@@ -11,7 +11,8 @@
 </template>
 
 <script>
-import { readerTotal } from "../../assets/data/readertotal.js";
+import axios from "axios";
+// import { readerTotal } from "../../assets/data/readertotal.js";
 export default {
   data() {
     return {
@@ -24,7 +25,7 @@ export default {
   mounted() {
     this.initChart();
     this.returndata();
-    this.updateChart();
+    // this.updateChart();
   },
   destroyed() {
     window.removeEventListener("resize", () => {
@@ -56,19 +57,19 @@ export default {
         },
         legend: {
           left: 300,
-          top: "8%",
+          top: "1%",
           icon: "roundRect",
-          data: ["研究生", "教职工", "本科生", "教授", "其他人员"],
+          data: ["博士生", "博士后", "教职工", "本科生", "硕士生"],
           textStyle: {
             fontSize: 10, //字体大小
             color: "#ffffff", //字体颜色
           },
         },
         grid: {
-          // top: '12%',
+          // top: '3%',
           left: "12%",
           right: "6%",
-          bottom: "15%",
+          bottom: "23%",
           containLable: true, //距离包含坐标轴上的文字
         },
       };
@@ -77,7 +78,10 @@ export default {
 
     returndata() {
       //axios
-      this.alldata = readerTotal;
+    axios.get("/api/StudySituationAnalysis/AnnualReadingStatistics").then(res => {
+        this.alldata = res.data.data;
+        this.updateChart();
+      });
     },
     updateChart() {
       this.year = [
@@ -118,7 +122,7 @@ export default {
         series: [
           //一个数组，每个表示一根折线
           {
-            name: "研究生",
+            name: "博士生",
             type: "line",
             data: this.alldata[0].data,
             stack: "total", //堆叠图
@@ -149,7 +153,7 @@ export default {
             },
           },
           {
-            name: "教职工",
+            name: "博士后",
             type: "line",
             data: this.alldata[1].data,
             stack: "total", //堆叠图
@@ -180,7 +184,7 @@ export default {
             },
           },
           {
-            name: "本科生",
+            name: "教职工",
             type: "line",
             data: this.alldata[2].data,
             stack: "total", //堆叠图
@@ -211,7 +215,7 @@ export default {
             },
           },
           {
-            name: "教授",
+            name: "本科生",
             type: "line",
             data: this.alldata[3].data,
             stack: "total", //堆叠图
@@ -242,7 +246,7 @@ export default {
             },
           },
           {
-            name: "其他人员",
+            name: "硕士生",
             type: "line",
             data: this.alldata[4].data,
             stack: "total", //堆叠图

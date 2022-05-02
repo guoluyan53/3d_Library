@@ -11,7 +11,7 @@
 					<div class="total">
 						<div class="total1">
 							<p>总藏书量</p>
-							<p style="color:#2df0d4">225164万册</p>
+							<p style="color:#2df0d4">547265万册</p>
 						</div>
 						<div class="total2">
 							<p>累计借还量</p>

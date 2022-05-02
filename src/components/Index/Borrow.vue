@@ -1,62 +1,63 @@
 <!--首页的借书和还书情况 按照 日（从早上7:00到傍晚17:00） 周（本月第一周 第二周） 月份（2021年的8 9 10等等1月 2月 3月 4月） -->
 <template>
-	<div class="container">
-		<!-- 导航栏 -->
-		<div class="nav">
-			<li
-			    v-for="(item,index) in tabs"
-			    :key="item"
-			    :class="{active:index == num}"
-			    @click="tab(index)"
-			>{{item}}</li>
-		</div>
+  <div class="container">
+    <!-- 导航栏 -->
+    <div class="nav">
+      <li
+        v-for="(item,index) in tabs"
+        :key="item"
+        :class="{active:index == num}"
+        @click="tab(index)"
+      >{{item}}</li>
+    </div>
 
-		<!-- 总数 -->
-		<div class="total">
-			<div class="total-count1">
-				<div class="borrow-book">
-					<p>总借书量</p>
-					<p class="borrow-book-value">{{firstborrow}}</p>
-				</div>
-			</div>
+    <!-- 总数 -->
+    <div class="total">
+      <div class="total-count1">
+        <div class="borrow-book">
+          <p>总借书量</p>
+          <p class="borrow-book-value">{{firstborrow}}</p>
+        </div>
+      </div>
 
-			<div class="total-count2">
-				<div class="return-book">
+      <div class="total-count2">
+        <div class="return-book">
 
-					<p>总还书量</p>
-					<p class="return-book-value">{{firstreturn}}</p>
-				</div>
-			</div>
-		</div>
+          <p>总还书量</p>
+          <p class="return-book-value">{{firstreturn}}</p>
+        </div>
+      </div>
+    </div>
 
-		<div
-		    class="chart"
-		    ref="borrow_ref"
-		></div>
-	</div>
+    <div
+      class="chart"
+      ref="borrow_ref"
+    ></div>
+  </div>
 </template>
 
 <script>
-import { borrowdata } from "../../assets/data/borrow.js";
+// import { borrowdata } from "../../assets/data/borrow.js";
+import axios from "axios";
 export default {
   data() {
     return {
-      firstborrow: 600,
-      firstreturn: 500,
+      firstborrow: 6846,
+      firstreturn: 6684,
       chartInstance: {},
       tabs: ["近六日", "近六周", "近六月"],
       alldata: null,
       num: "", //即li的类名，通过类名控制选项卡样式
-      borrowtotal: [600, 6000, 60000], //数据总量
-      returntotal: [500, 5000, 50000], //异常数据总量
+      borrowtotal: [6846, 50841, 173832], //数据总量
+      returntotal: [6684, 50848, 153982], //异常数据总量
       Btotallist: [], //3个库的6个月的数据数组
       Rtotallist: [],
     };
   },
   mounted() {
     this.returndata();
-    this.initChart();
-    this.updateChart();
+    // this.initChart();
+    // this.updateChart();
   },
   destroyed() {
     window.removeEventListener("resize", () => {
@@ -68,15 +69,21 @@ export default {
   methods: {
     returndata() {
       // axios获取数据
-      this.alldata = borrowdata;
-      for (let i = 0; i < 3; i++) {
-        for (let j = 0; j < 6; j++) {
-          this.Btotallist.push(this.alldata[i].data[j].borrowtotal);
-          this.Rtotallist.push(this.alldata[i].data[j].returntotal);
+      axios.get("/api/Home/details").then(res => {
+        this.alldata = res.data.data;
+        // console.log(res);
+        // console.log(this.alldata);
+        //是异步的所有数据都必须在axios中处理
+        for (let i = 0; i < 3; i++) {
+          for (let j = 0; j < 6; j++) {
+            this.Btotallist.push(this.alldata[i].data[j].borrowtotal);
+            this.Rtotallist.push(this.alldata[i].data[j].returntotal);
+          }
         }
-      }
-      console.log(this.Btotallist);
-      console.log(this.Rtotallist);
+        this.initChart();
+        this.updateChart();
+      });
+      // this.alldata = borrowdata;
     },
     initChart() {
       //挂载
@@ -103,8 +110,8 @@ export default {
         grid: {
           left: "3%",
           right: "4%",
-          bottom: '4%',
-		  top:'6%',
+          bottom: "4%",
+          top: "6%",
           containLabel: true,
         },
         xAxis: {

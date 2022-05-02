@@ -2,9 +2,10 @@
 <template>
   <div class="container">
     <div class="title">
-      <p class="title-p">分类借阅比率</p>
+      <p class="title-p">图书分类馆藏量</p>
     </div>
     <div class="chart-box">
+      <span>总数:547265册</span>
       <div
         class="chart"
         ref="cate_ref"
@@ -42,11 +43,21 @@ export default {
       this.alldata = catedata;
       const initOption = {
         backgroundColor: "",
+          legend: {
+              top: "2%",
+              left: "75%",
+              textStyle: {
+                color: "#fff", // 图例文字颜色
+              },
+            },
+            tooltip: {
+              trigger: "item",
+            },
         series: [
           {
             type: "pie",
-            radius: ["40%", "70%"],
-            center: ["50%", "50%"],
+            radius: ["50%", "70%"],
+            center: ["40%", "50%"],
             avoidLabelOverlap: false,
             emphasis: {
               itemStyle: {
@@ -56,12 +67,9 @@ export default {
               },
             },
             data: this.alldata,
-            tooltip: {
-              trigger: "item",
-            },
             universalTransition: true,
             label: {
-              show: true,
+              show: false,
               formatter: "{b} : {d}%",
               textStyle: {
                 fontSize: 14,
@@ -89,6 +97,13 @@ export default {
 };
 </script>
 <style scoped>
+span{
+  display: inline-block;
+  color: white;
+    text-shadow: 0 0 0.4rem #13b1cd, 0 0 0.5rem rgba(255, 255, 255, 0.6),
+    0 0 1rem rgba(255, 255, 255, 0.8);
+    transform: translate(-2rem,9.5rem);
+}
 .container {
   width: 100%;
   height: 100%;
@@ -103,7 +118,7 @@ export default {
 .chart {
   width: 100%;
   height: 100%;
-  transform: scale(0.9);
+  transform: translateY(-1.5rem) scale(0.9);
 }
 .title {
   width: 100%;
@@ -114,7 +129,7 @@ export default {
   color: white;
 }
 .title-p {
-  transform: translate(-4rem, 0.1rem);
+  transform: translate(-6rem, 0.1rem);
   letter-spacing: 1.6px;
   font-size: 0.8rem;
 }

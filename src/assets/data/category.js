@@ -1,51 +1,55 @@
 const catedata=[
     {
-        name:"文学",
-        value:5
+        name:"哲学、宗教",
+        value:30808
     },
     {
-        name:"历史",
-        value:18
-    },
-    {
-        name:"政治",
-        value:32
-    },
-    {
-        name:"艺术",
-        value:52
-    },
-    {
-        name:"语言",
-        value:8
-    },
-    {
-        name:"计算机",
-        value:16
-    },
-    {
-        name:"自然科学",
-        value:27
+        name:"政治、法律",
+        value:48022
     },
     {
         name:"军事",
-        value:35
+        value:3746
     },
     {
         name:"经济",
-        value:49
+        value:52644
     },
     {
-        name:"环境科学",
-        value:22
+        name:"文化、科学、教育、体育",
+        value:53139
     },
     {
-        name:"综合性",
-        value:9
+        name:"文学",
+        value:83172
     },
     {
-        name:"其他",
-        value:10
+        name:"艺术",
+        value:27292
+    },
+    {
+        name:"历史、地理",
+        value:47573
+    },
+    {
+        name:"自然科学总论",
+        value:3980
+    },
+    {
+        name:"医药、卫生",
+        value:8677
+    },
+    {
+        name:"农业科学",
+        value:3828
+    },
+    {
+        name:"交通运输",
+        value:1000
+    },
+    {
+        name:"综合性图书",
+        value:9720
     }
 
 ]

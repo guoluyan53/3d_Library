@@ -1,16 +1,17 @@
 <!-- 首页进馆人数图表：堆叠折线图 -->
 <template>
-	<div class="container1">
-		<div
-		    class="chart1"
-		    ref="mon_ref"
-		>
-	</div>
-	</div>
+  <div class="container1">
+    <div
+      class="chart1"
+      ref="mon_ref"
+    >
+  </div>
+  </div>
 </template>
 
 <script>
-import { countdata } from "../../assets/data/enter.js";
+import axios from "axios";
+// import { countdata } from "../../assets/data/enter.js";
 export default {
   data() {
     return {
@@ -22,7 +23,7 @@ export default {
   mounted() {
     this.initChart();
     this.returndata();
-    this.updateChart();
+    // this.updateChart();
   },
   destroyed() {
     window.removeEventListener("resize", () => {
@@ -32,6 +33,15 @@ export default {
     });
   },
   methods: {
+    //获取服务器数据的方法
+    async returndata() {
+      await axios.get("/api/Home/People").then(res => {
+        this.alldata = res.data.data;
+        console.log(this.alldata);
+        this.updateChart();
+      });
+    },
+
     initChart() {
       this.chartInstance = this.$echarts.init(this.$refs.mon_ref, "chalk");
       const initOption = {
@@ -77,14 +87,12 @@ export default {
       };
       this.chartInstance.setOption(initOption);
     },
-    //获取服务器数据的方法
-    returndata() {
-      this.alldata = countdata;
-    },
 
     //更新图标和处理数据的方法
     updateChart() {
       this.timeMonth = [
+        "6:00",
+        "7:00",
         "8:00",
         "9:00",
         "10:00",
@@ -93,12 +101,23 @@ export default {
         "13:00",
         "14:00",
         "15:00",
+        "16:00",
+        "17:00",
+        "18:00",
+        "19:00",
+        "20:00",
+        "21:00",
+        "22:00",
       ];
       const Option = {
         xAxis: {
           type: "category",
           data: this.timeMonth,
-          boundaryGap: false,
+          interval: 0,
+          axisLabel: {
+            interval: 0,
+            rotate: 45,
+          },
           axisLine: {
             lineStyle: {
               color: "white",
@@ -161,7 +180,7 @@ export default {
             label: {
               show: true,
               position: "top",
-			  textStyle: {
+              textStyle: {
                 fontSize: 12,
                 color: "#0066ff",
               },

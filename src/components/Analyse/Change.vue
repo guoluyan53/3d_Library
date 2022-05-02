@@ -1,24 +1,24 @@
 <!-- 横轴是阅读量 纵轴是学院 随着时间改变 -->
 <!--修改了min.js的版本 只有3以上的版本才可以对y轴进行排序 即inverse: true属性才被支持-->
 <template>
-	<div class="container">
-		<div
-		    class="chart"
-		    ref="change_ref"
-		></div>
-	</div>
+  <div class="container">
+    <div
+      class="chart"
+      ref="change_ref"
+    ></div>
+  </div>
 </template>
 
 <script>
-import { changedata } from "../../assets/data/change.js";
+import axios from "axios";
+// import { changedata } from "../../assets/data/change.js";
 export default {
   data() {
     return {
       chartInstance: null,
-      alldata: null,
+      alldata: [],
       // colors: null,
-      updateFrequency: 300, //数据更新速度
-      years: [],
+      updateFrequency: 500, //数据更新速度
       startYear: null,
       startName: null,
       startData: null,
@@ -26,9 +26,6 @@ export default {
   },
   mounted() {
     this.returndata();
-    this.initChart();
-    this.updateChart();
-    this.timer = setInterval(this.updateChart, 5000);
   },
   destroyed() {
     window.removeEventListener("resize", () => {
@@ -41,27 +38,33 @@ export default {
   methods: {
     //先处理一下数据
     returndata() {
-      this.alldata = changedata;
-
-      //获取第一个数据
-      this.startYear = this.alldata[0].year;
-      this.startName = this.alldata[0].academyname[0];
-      this.startData = this.alldata[0].readdata[0];
+      axios.get("/api/StudySituationAnalysis/CollegeReading").then(res => {
+        this.alldata = res.data.data;
+        //获取第一个数据
+        this.startYear = this.alldata[0].year;
+        this.startName = this.alldata[0].academyname[0];
+        this.startData = this.alldata[0].readdata[0];
+        console.log(this.alldata);
+        this.initChart();
+        this.timer = setInterval(this.updateChart, 5000);
+        // this.updateChart();
+      });
     },
 
     initChart() {
       this.chartInstance = this.$echarts.init(this.$refs.change_ref, "chalk");
       const colors = {
-        文学院: "#002561",
-        计算机学院: "#0051de",
-        锂电学院: "#005de7",
-        财金学院: "#0d70ea",
-        美术学院: "#1d85ec",
-        马克思学院: "#2c9aed",
-        音乐学院: "#38adf3",
-        国教学院: "#46c0f5",
-        商学院: "#49c4f6",
-        数统学院: "#51cff8",
+        商学院: "#002561",
+        政法学院: "#0051de",
+        文学院: "#005de7",
+        化学与化工学院: "#0d70ea",
+        财政金融学院: "#1d85ec",
+        计算机信息工程学院: "#2c9aed",
+        生命科学学院: "#38adf3",
+        物理与通信电子学院: "#46c0f5",
+        外国语学院: "#49c4f6",
+        软件学院: "#51cff8",
+        研究生院: "#002561",
       };
       const initOption = {
         backgroundColor: "",
@@ -156,10 +159,10 @@ export default {
               show: true,
               precision: 1,
               position: "right",
-               textStyle: {
-                  fontSize: 12,
-                  color: "#fff",
-                },
+              textStyle: {
+                fontSize: 12,
+                color: "#fff",
+              },
               valueAnimation: true,
             },
             data: this.startData,

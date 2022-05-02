@@ -10,7 +10,8 @@
 </template>
 
 <script>
-import { radardata } from "../../assets/data/radar.js";
+// import { radardata } from "../../assets/data/radar.js";
+import axios from "axios";
 export default {
   data() {
     return {
@@ -19,9 +20,9 @@ export default {
     };
   },
   mounted() {
-    this.initChart();
+    // this.initChart();
     this.returndata();
-    this.updateChart();
+    // this.updateChart();
   },
   destroyed() {
     window.removeEventListener("resize", () => {
@@ -31,15 +32,23 @@ export default {
     });
   },
   methods: {
+      returndata() {
+       axios.get('/api/StudySituationAnalysis/radar').then(res=>{
+            this.alldata = res.data.data;
+            // console.log(this.alldata);
+            this.initChart();
+            this.updateChart();
+        })
+    },
+
     initChart() {
       this.chartInstance = this.$echarts.init(this.$refs.radar_ref, "chalk");
-
-      this.alldata = radardata;
+      // this.alldata = radardata;
       const initOption = {
         backgroundColor: "",
         color: ["#005de7", "#fa8278", "#3ce8c0", "#5ec5eb", "#fdb650"],
         legend: {
-          data: ["研究生", "教职工", "本科生", "教授", "其他人员"],
+          data: ["博士生", "博士后", "教职工", "本科生", "硕士生"],
           icon: "circle",
           orient: "vertical", //垂直显示
           y: "center", //延Y轴居中
@@ -80,9 +89,7 @@ export default {
       };
       this.chartInstance.setOption(initOption);
     },
-    returndata() {
-      // this.alldata=radardata;
-    },
+  
     updateChart() {
       const Option = {
         series: [
@@ -91,7 +98,7 @@ export default {
             data: [
               {
                 value: this.alldata.seriesdata[0].value,
-                name: "研究生",
+                name: "博士后",
                 areaStyle: {
                   color: "#005de7",
                   opacity: 0.8,
@@ -99,7 +106,7 @@ export default {
               },
               {
                 value: this.alldata.seriesdata[1].value,
-                name: "教职工",
+                name: "博士生",
                 areaStyle: {
                   color: "#fa8278",
                   opacity: 0.8,
@@ -107,7 +114,7 @@ export default {
               },
               {
                 value: this.alldata.seriesdata[2].value,
-                name: "本科生",
+                name: "教职工",
                 areaStyle: {
                   color: "#3ce8c0",
                   opacity: 0.8,
@@ -115,7 +122,7 @@ export default {
               },
               {
                 value: this.alldata.seriesdata[3].value,
-                name: "教授",
+                name: "本科生",
                 areaStyle: {
                   color: "#5ec5eb",
                   opacity: 0.8,
@@ -123,7 +130,7 @@ export default {
               },
               {
                 value: this.alldata.seriesdata[4].value,
-                name: "其他人员",
+                name: "硕士生",
                 areaStyle: {
                   color: "#fdb650",
                   opacity: 0.4,

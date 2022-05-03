@@ -42,7 +42,7 @@ export default {
                     text:"2021年各书库借阅情况",
                     top:5
                 },
-                color:'#ecb576',
+                color:'#25ead5',
                 xAxis: {
                     data: borrowbook.name,
                     axisTick: { show: false },

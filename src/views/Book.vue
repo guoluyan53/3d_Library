@@ -31,6 +31,7 @@
           <Popo></Popo>
         </div>
         <div class="mid-bottom">
+          <p style="margin:0; padding-top:0.5rem; color:white;font-size:1.2rem">学院借阅类型比例top2</p>
           <Hotbook></Hotbook>
         </div>
       </div>
@@ -102,7 +103,7 @@ export default {
 .left-bottom {
   width: 100%;
   height: 40%;
-  background-image: url("../assets/image/indexkuang.png");
+  background-image: url("../assets/image/roll_back.png");
   background-size: 100% 100%;
 }
 .mid-box {
@@ -115,12 +116,12 @@ export default {
 .mid-top {
   width: 100%;
   height: 60%;
-  background-image: url("../assets/image/indexkuang.png");
+  background-image: url("../assets/image/roll_back.png");
   background-size: 100% 100%;
 }
 .mid-bottom {
   width: 100%;
-  height: 37%;
+  height: 39%;
   background-image: url("../assets/image/roll_back.png");
   background-size: 100% 100%;
 }
@@ -173,7 +174,7 @@ ul {
 .right-bottom {
   width: 100%;
   height: 55%;
-  background-image: url("../assets/image/indexkuang.png");
+  background-image: url("../assets/image/roll_back.png");
   background-size: 100% 100%;
 }
 </style>

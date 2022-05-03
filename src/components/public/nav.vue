@@ -115,9 +115,10 @@ export default {
 }
 a[class^="button"] {
   width: 5.4rem;
-  height: 2.2rem;
+  height: 2rem;
+  line-height: 2rem;
   cursor: pointer;
-  padding-top: 5px;
+  /* padding-top: 5px; */
   position: relative;
   color: white;
   text-align: center;

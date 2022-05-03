@@ -48,7 +48,7 @@ export default {
                     {
                     text: '馆藏图书利用率',  //这里标题还要改
                     left: 'center',
-                    top:0,
+                    top:15,
                     textStyle: {
                         fontWeight: 'normal',
                         fontSize: 18,

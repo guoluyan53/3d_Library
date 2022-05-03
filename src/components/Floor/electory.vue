@@ -103,27 +103,32 @@ export default {
                     data: this.data,
                     markArea: {
                         itemStyle: {
-                        color: 'rgba(32, 110, 212, 0.2)'
+                            color: 'rgba(32, 110, 212, 0.2)'
+                        },
+                        label:{
+                            textStyle:{
+                                color:'#fff'
+                            }
                         },
                         data: [
-                        [
-                            {
-                            name: 'Morning Peak',
-                            xAxis: '07:30'
-                            },
-                            {
-                            xAxis: '10:00'
-                            }
-                        ],
-                        [
-                            {
-                            name: 'Evening Peak',
-                            xAxis: '17:30'
-                            },
-                            {
-                            xAxis: '21:15'
-                            }
-                        ]
+                            [
+                                {
+                                    name: 'Morning Peak',
+                                    xAxis: '07:30'
+                                },
+                                {
+                                    xAxis: '10:00'
+                                }
+                            ],
+                            [
+                                {
+                                    name: 'Evening Peak',
+                                xAxis: '17:30'
+                                },
+                                {
+                                xAxis: '21:15'
+                                }
+                            ]
                         ]
                     }
                     }

@@ -22,8 +22,8 @@
           <div class="envtest">
             <p class="envtitle">楼层环境监测（{{curF}}F）</p>
             <div class="envcontent">
-              <li>温度 <span>26℃</span> </li>
-              <li>湿度 <span>12%RH</span> </li>
+              <li>温度 <span class="wendu">26℃</span> </li>
+              <li>湿度 <span class="shidu">12%RH</span> </li>
             </div>
             <div class="time">
               <span>当前时间：</span>
@@ -211,16 +211,18 @@ export default {
   line-height: 4rem;
   color: white;
   font-size: 1.3rem;
-  padding-left: 5px;
+  padding-left: 10px;
   text-align: left;
   border: 1px solid hsl(204, 84%, 52%);
   box-shadow: inset 0 0 5px 1px #1e9aec;
 }
 .envcontent span{
   display: inline-block;
-  margin-left: 5px;
   color: #09a4b1;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
+}
+.wendu{
+  margin-left: 2rem;
 }
 .electory{
   width: 58%;

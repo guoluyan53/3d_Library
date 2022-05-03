@@ -4,6 +4,8 @@
     <!-- <div id="label"></div> -->
   </div>
 </template>
+
+
  
 <script>
 import * as THREE from "three";

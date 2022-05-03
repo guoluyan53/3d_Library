@@ -10,7 +10,9 @@ module.exports = {
     devServer: {
       overlay: { // 让浏览器overlay同时提示警告和错误
         warnings: true,
-        errors: true
+        errors: true,
+        open: true,
+        hot: true,//自动保存
       },
       open: true, // 自动启动浏览器
       proxy: { // 配置多个跨域

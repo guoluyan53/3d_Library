@@ -83,7 +83,7 @@ export default {
                             clip: false, // 是否裁掉超出部分
                             itemStyle: {
                                 // 设置圆形
-                                color: '#e769a2', // 设置进度条初期式样
+                                color: '#f06a18', // 设置进度条初期式样
                             }
                         },
                         axisLine: {
@@ -151,7 +151,7 @@ export default {
                             clip: false, // 是否裁掉超出部分
                             itemStyle: {
                                 // 设置圆形
-                                color: '#fdf485', // 设置进度条初期式样
+                                color: '#f0e218', // 设置进度条初期式样
                             }
                         },
                         axisLine: {
@@ -219,7 +219,7 @@ export default {
                             clip: false, // 是否裁掉超出部分
                             itemStyle: {
                                 // 设置圆形
-                                color: '#a349f4', // 设置进度条初期式样
+                                color: '#c058e8', // 设置进度条初期式样
                             }
                         },
                         axisLine: {

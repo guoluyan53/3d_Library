@@ -50,9 +50,10 @@ export default {
         legend: {
           data: ["博士生", "博士后", "教职工", "本科生", "硕士生"],
           icon: "circle",
-          orient: "vertical", //垂直显示
-          y: "center", //延Y轴居中
-          x: "right", //居右显示
+          left:"3%",
+          // orient: "vertical", //垂直显示
+          y: "5%", //延Y轴居中
+          // x: "3%", //居右显示
           textStyle: {
             fontSize: 14, //字体大小
             color: "#ffffff", //字体颜色
@@ -64,6 +65,7 @@ export default {
         },
         radar: {
           indicator: this.alldata.indicator,
+           center: ['50%', '60%'],
           axisLine: {
             // 设置雷达图中间射线的颜色
             lineStyle: {
@@ -156,12 +158,14 @@ p {
   font-weight: bolder;
   margin: 0;
   padding: 0;
+  transform: translateY(1rem);
 }
 .container {
   width: 100%;
   height: 100%;
   align-items: center;
-  background-image: url("../../assets/image/indexkuang.png");
+  /* padding-top: 1rem; */
+  background-image: url("../../assets/image/roll_back1.png");
   background-repeat: no-repeat;
   background-size: 100% 100%;
 }
@@ -169,6 +173,6 @@ p {
   padding: 0;
   width: 100%;
   height: 100%;
-  transform: translateY(-2rem) scale(0.8);
+  transform: scale(0.9);
 }
 </style>

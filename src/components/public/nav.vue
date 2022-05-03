@@ -22,7 +22,7 @@
 						<span class="span3"></span>
 						<span class="span4"></span>楼层监控</a>
 			</div>
-			<div class="mid">图书馆数据展示平台</div>
+			<div class="mid">高校图书馆智慧决策平台</div>
 			<div class="right">
 				<a
 				    class="button3"

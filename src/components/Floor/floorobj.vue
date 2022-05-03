@@ -18,7 +18,7 @@ export default {
     width: Number,
     height: Number,
     curF: Number
-  },
+  }, 
   data(){
       return {
           scene:null,  //场景

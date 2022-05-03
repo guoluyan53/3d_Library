@@ -42,9 +42,10 @@ export default {
          color:["#005de7","#fa8278","#3ce8c0","#5ec5eb","#fdb650"],
         title: {
           text: "读者年度阅读统计",
-          padding: [20, 20, 150],
+          left:"23%",
+          padding: [23, 60, 220],
           textStyle: {
-            fontSize: 15, //字体大小
+            fontSize: 18, //字体大小
             color: "#fff", //字体颜色
           },
         },
@@ -56,8 +57,9 @@ export default {
           },
         },
         legend: {
-          left: 300,
-          top: "1%",
+          left: 290,
+          top: "10%",
+          // bottom:"90%",
           icon: "roundRect",
           data: ["博士生", "博士后", "教职工", "本科生", "硕士生"],
           textStyle: {
@@ -292,7 +294,7 @@ export default {
 .container {
   width: 100%;
   height: 100%;
-  background-image: url("../../assets/image/indexkuang.png");
+  background-image: url("../../assets/image/roll_back1.png");
   background-repeat: no-repeat;
   background-size: 100% 100%;
 }

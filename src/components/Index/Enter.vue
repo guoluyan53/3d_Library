@@ -78,7 +78,6 @@ export default {
           },
         },
         grid: {
-          // top: '12%',
           left: "12%",
           right: "6%",
           bottom: "25%",
@@ -92,22 +91,13 @@ export default {
     updateChart() {
       this.timeMonth = [
         "6:00",
-        "7:00",
         "8:00",
-        "9:00",
         "10:00",
-        "11:00",
         "12:00",
-        "13:00",
         "14:00",
-        "15:00",
         "16:00",
-        "17:00",
         "18:00",
-        "19:00",
         "20:00",
-        "21:00",
-        "22:00",
       ];
       const Option = {
         xAxis: {
@@ -142,7 +132,7 @@ export default {
           {
             name: "昨日",
             type: "line",
-            data: this.alldata[0].data,
+            data: this.alldata[0].data.slice(0,9),
             stack: "total", //堆叠图
             lineStyle: {
               color: "#06d3a0", //折线的颜色
@@ -172,7 +162,7 @@ export default {
           {
             name: "今日",
             type: "line",
-            data: this.alldata[1].data,
+            data: this.alldata[1].data.slice(0,9),
             stack: "total",
             lineStyle: {
               color: "#0066ff", //折线的颜色

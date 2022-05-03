@@ -20,7 +20,8 @@ export default {
       // colors: null,
       updateFrequency: 500, //数据更新速度
       startYear: null,
-      startName: null,
+      startName: [],
+      startName2: [],
       startData: null,
     };
   },
@@ -44,7 +45,6 @@ export default {
         this.startYear = this.alldata[0].year;
         this.startName = this.alldata[0].academyname[0];
         this.startData = this.alldata[0].readdata[0];
-        console.log(this.alldata);
         this.initChart();
         this.timer = setInterval(this.updateChart, 5000);
         // this.updateChart();
@@ -70,16 +70,18 @@ export default {
         backgroundColor: "",
         title: {
           text: "各学院读者近10年阅读量",
-          padding: [4, 20, 150],
+          left: "28%",
+          // padding: [10, 20, 150],
+          top:"3%",
           textStyle: {
             fontSize: 18, //字体大小
             color: "#fff", //字体颜色
           },
         },
         grid: {
-          left: "15%",
-          right: "1%",
-          bottom: "10%",
+          left: "20%",
+          right: "10%",
+          bottom: "24%",
           containLable: true, //距离包含坐标轴上的文字
         },
         xAxis: {
@@ -108,12 +110,12 @@ export default {
           type: "category",
           data: this.startName,
           inverse: true,
+          textStyle: {
+            color: "white",
+            fontSize: 6,
+          },
           axisLabel: {
             show: true,
-            textStyle: {
-              fontSize: 14,
-              color: "white",
-            },
             rich: {
               flag: {
                 fontSize: 25,
@@ -135,7 +137,7 @@ export default {
             {
               type: "text",
               right: 30,
-              bottom: 90,
+              bottom: 110,
               style: {
                 text: this.startYear,
                 fill: "#fff",
@@ -179,6 +181,13 @@ export default {
           inverse: true,
           type: "category",
           data: updata.academyname,
+          axisLabel: {
+            textStyle: {
+              show: true,
+              color: "#fff",
+              fontSize: "10",
+            },
+          },
         },
         series: [
           {
@@ -222,13 +231,12 @@ export default {
 .container {
   width: 100%;
   height: 100%;
-  background-image: url("../../assets/image/indexkuang.png");
+  background-image: url("../../assets/image/roll_back1.png");
   background-repeat: no-repeat;
   background-size: 100% 100%;
 }
 .chart {
   width: 100%;
   height: 100%;
-  transform: scale(0.9);
 }
 </style>

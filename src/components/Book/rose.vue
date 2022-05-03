@@ -53,7 +53,7 @@ export default {
                     {
                     name: 'Nightingale Chart',
                     type: 'pie',
-                    radius: [50 , 100],
+                    radius: [50 , 80],
                     center: 'center',
                     roseType: 'area',
                     itemStyle: {

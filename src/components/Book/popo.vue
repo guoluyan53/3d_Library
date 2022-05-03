@@ -89,8 +89,8 @@ export default {
                     {
                     text: resdata.timelines[0],
                     textAlign: 'center',
-                    left: '63%',
-                    top: '55%',
+                    left: '25%',
+                    top: '20%',
                     textStyle: {
                         fontSize: 50  //年份字体的大小
                     }

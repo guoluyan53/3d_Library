@@ -80,7 +80,7 @@ div[class^='content'] {
 }
 .middleschool {
 	display: grid;
-	grid-template-rows: 25% 75%;
+	grid-template-rows: 32% 68%;
 	padding-top: 1rem;
 	background-image: url('../assets/image/book_back.png');
 	background-repeat: no-repeat;
@@ -107,12 +107,14 @@ div[class^='content'] {
 	background-image: url('../assets/image/totaltwo_back.png');
 	background-repeat: no-repeat;
 	background-size: contain;
-	width: 7.2rem;
+	width: 8.5rem;
 	height: 100%;
 	text-align: center;
 }
 .total p {
-	font-size: 0.5rem;
+	font-size: 0.8rem;
+	margin-bottom: 0;
+	margin-top: 0.6rem
 }
 .book{
 	cursor:crosshair;

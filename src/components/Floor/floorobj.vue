@@ -300,9 +300,11 @@ export default {
 
   },
   mounted(){
-      this.init();
+      this.init(); 
+      bounceAnimation(this.louceng,this.groups,this.scene,this.camera,this.renderer,this.width,this.height);
       this.initmodel();
-      // this.bounceAnimation(this.curF,this.groups)
+      // this.bounceAnimation(this.louceng,this.groups)
+      
 
   },
   destroyed(){

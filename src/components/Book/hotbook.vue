@@ -106,9 +106,9 @@ export default {
           },
         },
         title: {
-          text: "计算机学院",
+          text: this.data2.deptName,
           top: "center",
-          left: "19%",
+          left: "22%",
         },
         series: [
           {

@@ -46,7 +46,7 @@ export default {
                 },
                 title: [
                     {
-                    text: '馆藏图书利用率',  //这里标题还要改
+                    text: '馆藏图书使用情况',  //这里标题还要改
                     left: 'center',
                     top:15,
                     textStyle: {

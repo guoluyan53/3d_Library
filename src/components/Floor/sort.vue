@@ -8,7 +8,6 @@
 <script>
 import axios from 'axios';
 import {borrowbook} from '../../assets/data/floor'
-import bookobjVue from '../Book/bookobj.vue';
 export default {
     name: 'Sort',
     data(){
